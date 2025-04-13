@@ -22,6 +22,7 @@ interface Attorney {
   specialization: string[];
   bio: string;
   imageUrl: string;
+  displayInitial?: string; // Optional override for the profile initial
 }
 
 const attorneys: Attorney[] = [
@@ -41,11 +42,12 @@ const attorneys: Attorney[] = [
       "Recuperação de Valores"
     ],
     bio: "Com mais de 20 anos de experiência, Dra. Denise Moura é reconhecida por sua excepcional habilidade em casos complexos de recuperação de valores. Sua abordagem combina profundo conhecimento jurídico com uma compreensão aguçada das necessidades do cliente, resultando em uma alta taxa de sucesso em suas causas.",
-    imageUrl: "/attorneys/denise.jpg"
+    imageUrl: "/attorneys/denise.jpg",
+    displayInitial: "D"
   },
   {
     id: 2,
-    name: "Cr. Carlos Seabra",
+    name: "Dr. Carlos Seabra",
     title: "Sócio-Fundador",
     oab: "OAB/RJ 789.012",
     education: [
@@ -59,9 +61,21 @@ const attorneys: Attorney[] = [
       "Crimes Digitais"
     ],
     bio: "Dr. Carlos Seabra dedica-se há mais de 15 anos à defesa de clientes vítimas de fraudes financeiras e golpes digitais. Sua expertise em direito bancário e sua visão estratégica transformaram-no em referência nacional no combate a fraudes do PIX e outras transações eletrônicas.",
-    imageUrl: "/attorneys/carlos.jpg"
+    imageUrl: "/attorneys/carlos.jpg",
+    displayInitial: "C"
   }
 ];
+
+// Helper function to get the proper initial for the profile picture
+const getAttorneyInitial = (attorney: Attorney): string => {
+  // Use the displayInitial if provided, otherwise extract from name
+  if (attorney.displayInitial) {
+    return attorney.displayInitial;
+  }
+
+  // Default behavior: use first character of name
+  return attorney.name.charAt(0);
+};
 
 const TeamSection = () => {
   // WhatsApp number with Brazilian country code
@@ -106,7 +120,7 @@ const TeamSection = () => {
                     <div className="aspect-square bg-law-gold/10 rounded-xl overflow-hidden">
                       {/* Placeholder for attorney image */}
                       <div className="w-full h-full bg-gradient-to-br from-law-gold/20 to-law-black flex items-center justify-center">
-                        <span className="text-6xl text-law-gold/50">{attorney.name.charAt(0)}</span>
+                        <span className="text-6xl text-law-gold/50">{getAttorneyInitial(attorney)}</span>
                       </div>
                     </div>
                     <div className="text-center mt-4">
