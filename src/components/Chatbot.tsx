@@ -26,7 +26,7 @@ const Chatbot = () => {
     useEffect(() => {
         const fetchLawInfo = async () => {
             try {
-                const response = await fetch("/src/data/law-info.md");
+                const response = await fetch("/law-info.md");
                 const text = await response.text();
                 setLawInfo(text);
 
@@ -134,8 +134,8 @@ const Chatbot = () => {
             <Button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`fixed left-6 bottom-6 z-50 rounded-full w-14 h-14 p-0 flex items-center justify-center shadow-xl transition-all duration-300 ${isOpen
-                        ? "bg-law-black text-law-gold hover:bg-law-black-light"
-                        : "bg-gradient-to-r from-law-gold-dark to-law-gold text-law-black hover:from-law-gold hover:to-law-gold-dark"
+                    ? "bg-law-black text-law-gold hover:bg-law-black-light"
+                    : "bg-gradient-to-r from-law-gold-dark to-law-gold text-law-black hover:from-law-gold hover:to-law-gold-dark"
                     }`}
             >
                 {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
@@ -165,8 +165,8 @@ const Chatbot = () => {
                         >
                             <div
                                 className={`max-w-[80%] rounded-xl p-3 relative ${message.role === "user"
-                                        ? "bg-law-gold/10 text-law-white ml-4"
-                                        : "bg-law-gold/20 text-law-white mr-4"
+                                    ? "bg-law-gold/10 text-law-white ml-4"
+                                    : "bg-law-gold/20 text-law-white mr-4"
                                     }`}
                             >
                                 <div className="flex items-center gap-2 mb-1">

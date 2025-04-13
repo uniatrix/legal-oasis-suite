@@ -32,8 +32,8 @@ const attorneys: Attorney[] = [
     title: "Sócia-Fundadora",
     oab: "OAB/RJ 123.456",
     education: [
-      "Doutora em Direito Civil pela Universidade Federal do Rio de Janeiro",
-      "Mestre em Direito Empresarial pela PUC-Rio",
+      "Formação em Direitol pela Universidade X do Rio de Janeiro",
+      "Mestre em Direito Empresarial pela Y",
       "Especialista em Resolução de Conflitos"
     ],
     specialization: [
@@ -41,7 +41,7 @@ const attorneys: Attorney[] = [
       "Direito Empresarial",
       "Recuperação de Valores"
     ],
-    bio: "Com mais de 20 anos de experiência, Dra. Denise Moura é reconhecida por sua excepcional habilidade em casos complexos de recuperação de valores. Sua abordagem combina profundo conhecimento jurídico com uma compreensão aguçada das necessidades do cliente, resultando em uma alta taxa de sucesso em suas causas.",
+    bio: "Com mais de 10 anos de experiência, Dra. Denise Moura é reconhecida por sua excepcional habilidade em casos complexos de recuperação de valores. Sua abordagem combina profundo conhecimento jurídico com uma compreensão aguçada das necessidades do cliente, resultando em uma alta taxa de sucesso em suas causas.",
     imageUrl: "/attorneys/denise.jpg",
     displayInitial: "D"
   },
@@ -51,8 +51,8 @@ const attorneys: Attorney[] = [
     title: "Sócio-Fundador",
     oab: "OAB/RJ 789.012",
     education: [
-      "Doutor em Direito Processual pela USP",
-      "Especialista em Direito Bancário",
+      "Formado em Direito pela Universidade Z",
+      "Especialista em Direito do Trabalho",
       "MBA em Gestão Jurídica"
     ],
     specialization: [
