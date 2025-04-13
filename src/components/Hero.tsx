@@ -1,62 +1,75 @@
 
 import { Button } from "@/components/ui/button";
+import { 
+  Shield, 
+  Users, 
+  Clock, 
+  AlertCircle 
+} from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="about" className="bg-law-navy text-white py-16 md:py-24">
+    <section id="about" className="bg-gradient-to-br from-law-navy via-law-navy to-law-navy-light text-white py-20 md:py-28">
       <div className="law-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 font-merriweather">
-              Expert Legal Solutions for Labor Disputes
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <div className="inline-block bg-law-gold/20 px-4 py-1 rounded-full">
+              <span className="text-law-gold-light font-medium text-sm tracking-wide">Premier Labor Law Firm</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-merriweather">
+              Protecting Your <span className="text-law-gold">Employment Rights</span> With Excellence
             </h1>
-            <p className="text-lg opacity-90 mb-8">
-              Dedicated to protecting employee rights and achieving favorable outcomes through strategic legal representation.
+            <p className="text-lg opacity-90 leading-relaxed">
+              Dedicated to achieving justice for employees through strategic legal representation and decades of specialized experience.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-law-gold hover:bg-law-gold-light text-law-navy font-semibold text-lg py-6 px-8">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button className="bg-law-gold hover:bg-law-gold-light text-law-navy font-semibold text-lg py-6 px-8 rounded-md shadow-lg hover:shadow-xl transition-all duration-300">
                 Free Consultation
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white/10 text-lg py-6 px-8">
-                Learn About Our Practice
+              <Button variant="outline" className="border-white text-white hover:bg-white/10 text-lg py-6 px-8 rounded-md transition-all duration-300">
+                Explore Our Services
               </Button>
             </div>
           </div>
           <div className="hidden md:block">
-            <div className="bg-law-navy-light p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-merriweather font-bold mb-4">Our Commitment</h3>
-              <ul className="space-y-4">
+            <div className="bg-white/5 backdrop-blur-sm p-8 rounded-xl shadow-xl border border-white/10">
+              <h3 className="text-2xl font-merriweather font-bold mb-6 text-law-gold">Why Choose Us</h3>
+              <ul className="space-y-5">
                 <li className="flex items-start">
-                  <div className="bg-law-gold rounded-full p-1 mr-3 mt-1">
-                    <svg className="w-4 h-4 text-law-navy" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                    </svg>
+                  <div className="bg-law-gold rounded-full p-2 mr-4 shadow-md">
+                    <Shield className="w-5 h-5 text-law-navy" />
                   </div>
-                  <span>Expert representation in all labor disputes</span>
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Expert Representation</h4>
+                    <p className="text-gray-300 text-sm">Specialized attorneys with proven track record in labor disputes</p>
+                  </div>
                 </li>
                 <li className="flex items-start">
-                  <div className="bg-law-gold rounded-full p-1 mr-3 mt-1">
-                    <svg className="w-4 h-4 text-law-navy" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                    </svg>
+                  <div className="bg-law-gold rounded-full p-2 mr-4 shadow-md">
+                    <Users className="w-5 h-5 text-law-navy" />
                   </div>
-                  <span>Personalized approach to each case</span>
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Client-Focused Approach</h4>
+                    <p className="text-gray-300 text-sm">Personalized legal strategies tailored to your unique situation</p>
+                  </div>
                 </li>
                 <li className="flex items-start">
-                  <div className="bg-law-gold rounded-full p-1 mr-3 mt-1">
-                    <svg className="w-4 h-4 text-law-navy" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                    </svg>
+                  <div className="bg-law-gold rounded-full p-2 mr-4 shadow-md">
+                    <Clock className="w-5 h-5 text-law-navy" />
                   </div>
-                  <span>Transparent communication throughout the process</span>
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Timely Communication</h4>
+                    <p className="text-gray-300 text-sm">Regular updates and transparent dialogue throughout your case</p>
+                  </div>
                 </li>
                 <li className="flex items-start">
-                  <div className="bg-law-gold rounded-full p-1 mr-3 mt-1">
-                    <svg className="w-4 h-4 text-law-navy" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                    </svg>
+                  <div className="bg-law-gold rounded-full p-2 mr-4 shadow-md">
+                    <AlertCircle className="w-5 h-5 text-law-navy" />
                   </div>
-                  <span>Results-oriented legal strategies</span>
+                  <div>
+                    <h4 className="font-bold text-white mb-1">Results-Driven</h4>
+                    <p className="text-gray-300 text-sm">Committed to achieving the best possible outcome for every client</p>
+                  </div>
                 </li>
               </ul>
             </div>

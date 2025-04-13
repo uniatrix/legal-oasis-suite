@@ -57,20 +57,39 @@ const practiceAreas: PracticeArea[] = [
 
 const PracticeAreas = () => {
   return (
-    <section id="practice" className="py-16">
+    <section id="practice" className="py-24 bg-white">
       <div className="law-container">
-        <h2 className="section-title text-center">Our Labor Law Practice Areas</h2>
-        <p className="text-center text-law-navy-light max-w-3xl mx-auto mb-12">
-          We provide comprehensive legal services focused on protecting employee rights and resolving workplace disputes effectively.
-        </p>
+        <div className="text-center mb-16">
+          <h2 className="section-title text-center mb-3">Our Labor Law Practice Areas</h2>
+          <div className="w-24 h-1 bg-law-gold mx-auto mb-6"></div>
+          <p className="text-center text-law-navy-light max-w-3xl mx-auto">
+            We provide comprehensive legal services focused on protecting employee rights and resolving workplace disputes effectively.
+          </p>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {practiceAreas.map((area) => (
-            <Card key={area.id} className="border border-gray-200 hover:border-law-gold hover:shadow-md transition-all">
-              <CardContent className="p-6">
-                <div className="mb-4">{area.icon}</div>
-                <h3 className="text-xl font-bold text-law-navy mb-2">{area.title}</h3>
-                <p className="text-gray-600">{area.description}</p>
+            <Card key={area.id} className="rounded-xl overflow-hidden border-none shadow-md hover:shadow-xl transition-all duration-300 group">
+              <CardContent className="p-0">
+                <div className="bg-law-navy p-8 flex justify-center">
+                  <div className="bg-white/10 backdrop-blur-sm p-4 rounded-full">
+                    {React.cloneElement(area.icon as React.ReactElement, { 
+                      className: "h-10 w-10 text-law-gold group-hover:text-white transition-colors duration-300" 
+                    })}
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-law-navy mb-3">{area.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{area.description}</p>
+                  <div className="mt-6 pt-4 border-t border-gray-100">
+                    <a href="#contact" className="inline-flex items-center text-law-gold font-medium hover:text-law-navy transition-colors duration-300 text-sm">
+                      Learn More
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           ))}
