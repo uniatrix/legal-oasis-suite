@@ -2,7 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Briefcase, 
-  GavelSquare, 
+  Gavel, 
   Scale, 
   FileWarning, 
   FileCheck, 
@@ -51,7 +51,7 @@ const practiceAreas: PracticeArea[] = [
     id: 6,
     title: "Labor Union Matters",
     description: "Representation in collective bargaining, grievance processes, and unfair labor practice claims.",
-    icon: <GavelSquare className="h-10 w-10 text-law-gold" />
+    icon: <Gavel className="h-10 w-10 text-law-gold" />
   }
 ];
 
