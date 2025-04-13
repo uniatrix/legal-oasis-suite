@@ -20,31 +20,31 @@ type TeamMember = {
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: "Alexandra Rodriguez",
-    title: "Senior Partner",
-    bio: "With over 20 years of experience in labor law, Alexandra has successfully represented clients in complex employment disputes and class action lawsuits.",
-    specialization: "Employment Discrimination, Wage & Hour Claims"
+    name: "Orlando Seabra",
+    title: "Sócio-Fundador",
+    bio: "Advogado especialista em Direito do Trabalho e Previdenciário, com mais de 30 anos de experiência em defesa dos direitos de trabalhadores e aposentados.",
+    specialization: "Direito Trabalhista, Previdenciário"
   },
   {
     id: 2,
-    name: "Michael Chen",
-    title: "Managing Partner",
-    bio: "Michael specializes in workplace investigations and has a strong track record of negotiating favorable settlements for employees facing wrongful termination.",
-    specialization: "Wrongful Termination, Whistleblower Protection"
+    name: "Rosana Moura Santos",
+    title: "Sócia-Fundadora",
+    bio: "Especialista em Direito Civil e Consumidor, com vasta experiência em litígios e mediação de conflitos, proporcionando soluções eficazes para os clientes.",
+    specialization: "Direito Civil, Direito do Consumidor"
   },
   {
     id: 3,
-    name: "Sarah Johnson",
-    title: "Associate Attorney",
-    bio: "Sarah's expertise includes advocacy for workers' rights in unionized environments and representation in administrative hearings before labor boards.",
-    specialization: "Union Representation, NLRB Proceedings"
+    name: "Paulo Gomes",
+    title: "Advogado Associado",
+    bio: "Advogado especializado em Direito Administrativo e Trabalhista, com foco em processos administrativos e ações coletivas.",
+    specialization: "Direito Administrativo, Trabalhista"
   },
   {
     id: 4,
-    name: "David Miller",
-    title: "Of Counsel",
-    bio: "With a background in both plaintiff and defense work, David brings valuable perspective to complex employment litigation and compliance matters.",
-    specialization: "Employment Litigation, Regulatory Compliance"
+    name: "Carla Mendes",
+    title: "Advogada Associada",
+    bio: "Especialista em causas acidentárias e direito previdenciário, com ampla experiência em auxílio-doença, aposentadoria por invalidez e acidentes de trabalho.",
+    specialization: "Causas Acidentárias, Previdenciário"
   }
 ];
 
@@ -53,10 +53,10 @@ const TeamSection = () => {
     <section id="team" className="py-24 bg-law-gray">
       <div className="law-container">
         <div className="text-center mb-16">
-          <h2 className="section-title text-center mb-3">Meet Our Expert Legal Team</h2>
+          <h2 className="section-title text-center mb-3">Conheça Nossa Equipe Jurídica</h2>
           <div className="w-24 h-1 bg-law-gold mx-auto mb-6"></div>
           <p className="text-center text-law-navy-light max-w-3xl mx-auto">
-            Our attorneys combine decades of experience with innovative thinking to advocate for employees in all labor-related matters.
+            Nossos advogados combinam décadas de experiência com pensamento inovador para defender os interesses dos clientes em todas as questões jurídicas.
           </p>
         </div>
         
@@ -80,7 +80,7 @@ const TeamSection = () => {
                 <div className="p-6">
                   <p className="text-gray-600 mb-6 text-sm leading-relaxed">{member.bio}</p>
                   <div className="pt-4 border-t border-gray-200">
-                    <p className="text-xs font-semibold text-law-navy-light tracking-wider mb-1">AREAS OF PRACTICE</p>
+                    <p className="text-xs font-semibold text-law-navy-light tracking-wider mb-1">ÁREAS DE ATUAÇÃO</p>
                     <p className="text-law-navy font-medium text-sm">{member.specialization}</p>
                   </div>
                 </div>
@@ -92,20 +92,20 @@ const TeamSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           <div className="bg-white p-8 rounded-xl shadow-md flex flex-col items-center text-center">
             <Shield className="h-12 w-12 text-law-gold mb-4" />
-            <h3 className="text-xl font-bold text-law-navy mb-2">Legal Excellence</h3>
-            <p className="text-gray-600 text-sm">Our attorneys are recognized leaders in labor law, with numerous accolades and peer recognitions.</p>
+            <h3 className="text-xl font-bold text-law-navy mb-2">Excelência Jurídica</h3>
+            <p className="text-gray-600 text-sm">Nossos advogados são reconhecidos como líderes em suas áreas, com diversas conquistas e reconhecimento de colegas.</p>
           </div>
           
           <div className="bg-white p-8 rounded-xl shadow-md flex flex-col items-center text-center">
             <Award className="h-12 w-12 text-law-gold mb-4" />
-            <h3 className="text-xl font-bold text-law-navy mb-2">Proven Results</h3>
-            <p className="text-gray-600 text-sm">We've recovered millions in compensation for our clients through settlements and court victories.</p>
+            <h3 className="text-xl font-bold text-law-navy mb-2">Resultados Comprovados</h3>
+            <p className="text-gray-600 text-sm">Recuperamos milhões em indenizações para nossos clientes através de acordos e vitórias judiciais.</p>
           </div>
           
           <div className="bg-white p-8 rounded-xl shadow-md flex flex-col items-center text-center">
             <BookOpen className="h-12 w-12 text-law-gold mb-4" />
-            <h3 className="text-xl font-bold text-law-navy mb-2">Industry Knowledge</h3>
-            <p className="text-gray-600 text-sm">Our team stays current on employment law changes to provide cutting-edge representation.</p>
+            <h3 className="text-xl font-bold text-law-navy mb-2">Conhecimento do Setor</h3>
+            <p className="text-gray-600 text-sm">Nossa equipe se mantém atualizada sobre as mudanças na legislação para fornecer representação de ponta.</p>
           </div>
         </div>
       </div>

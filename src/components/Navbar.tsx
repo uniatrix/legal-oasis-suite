@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <a href="/" className="flex items-center">
-              <span className="text-law-navy text-2xl font-bold font-merriweather">Legal<span className="text-law-gold">Oasis</span></span>
+              <span className="text-law-navy text-2xl font-bold font-merriweather">Seabra<span className="text-law-gold">Moura</span></span>
             </a>
           </div>
           
@@ -35,49 +35,49 @@ const Navbar = () => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuLink href="#about" className="text-law-navy-light hover:text-law-gold transition duration-300 px-3 py-2">
-                    About
+                    Sobre Nós
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink href="#team" className="text-law-navy-light hover:text-law-gold transition duration-300 px-3 py-2">
-                    Our Team
+                    Equipe
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-law-navy-light hover:text-law-gold transition duration-300">
-                    Practice Areas
+                    Áreas de Atuação
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                       <li>
                         <NavigationMenuLink href="#practice" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Wrongful Termination</div>
+                          <div className="text-sm font-medium leading-none">Direito Trabalhista</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Advocacy for employees who have been illegally fired.
+                            Assistência jurídica completa em questões trabalhistas.
                           </p>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink href="#practice" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Workplace Discrimination</div>
+                          <div className="text-sm font-medium leading-none">Direito Previdenciário</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Representation in discrimination cases.
+                            Assessoria para benefícios previdenciários e aposentadoria.
                           </p>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink href="#practice" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Wage & Hour Claims</div>
+                          <div className="text-sm font-medium leading-none">Direito Civil</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Assistance with recovering unpaid wages and benefits.
+                            Representação em assuntos cíveis e contratuais.
                           </p>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink href="#practice" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">View All</div>
+                          <div className="text-sm font-medium leading-none">Ver Todas</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Explore all of our specialized legal services.
+                            Explore todos os nossos serviços jurídicos especializados.
                           </p>
                         </NavigationMenuLink>
                       </li>
@@ -86,12 +86,12 @@ const Navbar = () => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink href="#contact" className="text-law-navy-light hover:text-law-gold transition duration-300 px-3 py-2">
-                    Contact
+                    Contato
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
-            <Button className="bg-law-navy hover:bg-law-navy-light text-white transition-colors duration-300">Client Portal</Button>
+            <Button className="bg-law-navy hover:bg-law-navy-light text-white transition-colors duration-300">Portal do Cliente</Button>
           </div>
           
           {/* Mobile menu button */}
@@ -119,31 +119,31 @@ const Navbar = () => {
                 className="text-law-navy-light hover:text-law-gold transition duration-300 py-2"
                 onClick={() => setIsOpen(false)}
               >
-                About
+                Sobre Nós
               </a>
               <a 
                 href="#team" 
                 className="text-law-navy-light hover:text-law-gold transition duration-300 py-2"
                 onClick={() => setIsOpen(false)}
               >
-                Our Team
+                Equipe
               </a>
               <a 
                 href="#practice" 
                 className="text-law-navy-light hover:text-law-gold transition duration-300 py-2"
                 onClick={() => setIsOpen(false)}
               >
-                Practice Areas
+                Áreas de Atuação
               </a>
               <a 
                 href="#contact" 
                 className="text-law-navy-light hover:text-law-gold transition duration-300 py-2"
                 onClick={() => setIsOpen(false)}
               >
-                Contact
+                Contato
               </a>
               <Button className="bg-law-navy hover:bg-law-navy-light text-white w-full">
-                Client Portal
+                Portal do Cliente
               </Button>
             </div>
           </div>

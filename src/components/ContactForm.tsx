@@ -45,8 +45,8 @@ const ContactForm = () => {
     
     // Show success message
     toast({
-      title: "Message Sent",
-      description: "Thank you for reaching out. One of our attorneys will contact you shortly.",
+      title: "Mensagem Enviada",
+      description: "Obrigado por entrar em contato. Um de nossos advogados entrará em contato em breve.",
     });
     
     // Reset form
@@ -63,26 +63,26 @@ const ContactForm = () => {
     <section id="contact" className="py-24 bg-law-gray">
       <div className="law-container">
         <div className="text-center mb-16">
-          <h2 className="section-title text-center mb-3">Contact Our Legal Team</h2>
+          <h2 className="section-title text-center mb-3">Entre em Contato</h2>
           <div className="w-24 h-1 bg-law-gold mx-auto mb-6"></div>
           <p className="text-center text-law-navy-light max-w-3xl mx-auto">
-            Schedule a consultation with our experienced labor law attorneys to discuss your case and explore your legal options.
+            Agende uma consulta com nossos advogados experientes para discutir seu caso e explorar suas opções legais.
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
             <div className="bg-white p-10 rounded-xl shadow-md">
-              <h3 className="text-2xl font-bold text-law-navy mb-6 font-merriweather">Request a Consultation</h3>
+              <h3 className="text-2xl font-bold text-law-navy mb-6 font-merriweather">Solicitar uma Consulta</h3>
               
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-gray-700 block">Full Name</label>
+                    <label htmlFor="name" className="text-sm font-medium text-gray-700 block">Nome Completo</label>
                     <Input
                       id="name"
                       name="name"
-                      placeholder="Your full name"
+                      placeholder="Seu nome completo"
                       value={formData.name}
                       onChange={handleChange}
                       required
@@ -91,12 +91,12 @@ const ContactForm = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-gray-700 block">Email Address</label>
+                    <label htmlFor="email" className="text-sm font-medium text-gray-700 block">Email</label>
                     <Input
                       id="email"
                       name="email"
                       type="email"
-                      placeholder="Your email address"
+                      placeholder="Seu email"
                       value={formData.email}
                       onChange={handleChange}
                       required
@@ -107,11 +107,11 @@ const ContactForm = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="text-sm font-medium text-gray-700 block">Phone Number</label>
+                    <label htmlFor="phone" className="text-sm font-medium text-gray-700 block">Telefone</label>
                     <Input
                       id="phone"
                       name="phone"
-                      placeholder="Your phone number"
+                      placeholder="Seu telefone"
                       value={formData.phone}
                       onChange={handleChange}
                       className="border-gray-300 focus:border-law-gold focus:ring-law-gold rounded-lg"
@@ -119,29 +119,30 @@ const ContactForm = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <label htmlFor="caseType" className="text-sm font-medium text-gray-700 block">Case Type</label>
+                    <label htmlFor="caseType" className="text-sm font-medium text-gray-700 block">Tipo de Caso</label>
                     <Select value={formData.caseType} onValueChange={handleSelectChange}>
                       <SelectTrigger className="border-gray-300 focus:border-law-gold focus:ring-law-gold rounded-lg">
-                        <SelectValue placeholder="Select case type" />
+                        <SelectValue placeholder="Selecione o tipo de caso" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="wrongful-termination">Wrongful Termination</SelectItem>
-                        <SelectItem value="discrimination">Workplace Discrimination</SelectItem>
-                        <SelectItem value="wage-claims">Wage & Hour Claims</SelectItem>
-                        <SelectItem value="harassment">Workplace Harassment</SelectItem>
-                        <SelectItem value="contracts">Employment Contracts</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="trabalhista">Direito Trabalhista</SelectItem>
+                        <SelectItem value="previdenciario">Direito Previdenciário</SelectItem>
+                        <SelectItem value="civil">Direito Civil</SelectItem>
+                        <SelectItem value="consumidor">Direito do Consumidor</SelectItem>
+                        <SelectItem value="acidentario">Causas Acidentárias</SelectItem>
+                        <SelectItem value="administrativo">Direito Administrativo</SelectItem>
+                        <SelectItem value="outro">Outro</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
                 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-gray-700 block">Message</label>
+                  <label htmlFor="message" className="text-sm font-medium text-gray-700 block">Mensagem</label>
                   <Textarea
                     id="message"
                     name="message"
-                    placeholder="Briefly describe your situation"
+                    placeholder="Descreva brevemente sua situação"
                     value={formData.message}
                     onChange={handleChange}
                     rows={5}
@@ -156,10 +157,10 @@ const ContactForm = () => {
                     className="w-full bg-law-navy hover:bg-law-navy-light text-white py-6 text-lg rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
                   >
                     <MessageSquare className="mr-2 h-5 w-5" />
-                    Send Message
+                    Enviar Mensagem
                   </Button>
                   <p className="text-center text-xs text-gray-500 mt-4">
-                    By submitting this form, you agree to our privacy policy and terms of service.
+                    Ao enviar este formulário, você concorda com nossa política de privacidade e termos de serviço.
                   </p>
                 </div>
               </form>
@@ -168,7 +169,7 @@ const ContactForm = () => {
           
           <div>
             <div className="bg-law-navy p-10 rounded-xl shadow-md text-white h-full">
-              <h3 className="text-2xl font-bold mb-8 font-merriweather">Contact Information</h3>
+              <h3 className="text-2xl font-bold mb-8 font-merriweather">Informações de Contato</h3>
               
               <div className="space-y-8">
                 <div className="flex items-start">
@@ -176,8 +177,8 @@ const ContactForm = () => {
                     <Phone className="h-6 w-6 text-law-gold" />
                   </div>
                   <div>
-                    <p className="font-medium text-lg text-law-gold-light">Phone</p>
-                    <p className="text-gray-300">+1 (555) 123-4567</p>
+                    <p className="font-medium text-lg text-law-gold-light">Telefone</p>
+                    <p className="text-gray-300">(11) 3434-5678</p>
                   </div>
                 </div>
                 
@@ -187,7 +188,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <p className="font-medium text-lg text-law-gold-light">Email</p>
-                    <p className="text-gray-300">contact@legaloasis.com</p>
+                    <p className="text-gray-300">contato@seabramoura.com.br</p>
                   </div>
                 </div>
                 
@@ -196,10 +197,10 @@ const ContactForm = () => {
                     <MapPin className="h-6 w-6 text-law-gold" />
                   </div>
                   <div>
-                    <p className="font-medium text-lg text-law-gold-light">Office</p>
+                    <p className="font-medium text-lg text-law-gold-light">Escritório</p>
                     <p className="text-gray-300">
-                      123 Legal Avenue, Suite 500<br />
-                      Los Angeles, CA 90001
+                      Rua Libero Badaró, 293 - Conj. 13A<br />
+                      Centro, São Paulo - SP, 01009-000
                     </p>
                   </div>
                 </div>
@@ -207,20 +208,20 @@ const ContactForm = () => {
               
               <div className="mt-12 pt-8 border-t border-law-navy-light">
                 <h4 className="text-lg font-medium mb-6 text-law-gold-light flex items-center">
-                  <Clock className="h-5 w-5 mr-2" /> Office Hours
+                  <Clock className="h-5 w-5 mr-2" /> Horário de Funcionamento
                 </h4>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Monday - Friday:</span>
-                    <span className="text-white font-medium">9:00 AM - 6:00 PM</span>
+                    <span className="text-gray-300">Segunda a Sexta:</span>
+                    <span className="text-white font-medium">9:00 - 18:00</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Saturday:</span>
-                    <span className="text-white font-medium">10:00 AM - 2:00 PM</span>
+                    <span className="text-gray-300">Sábado:</span>
+                    <span className="text-white font-medium">9:00 - 12:00</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Sunday:</span>
-                    <span className="text-white font-medium">Closed</span>
+                    <span className="text-gray-300">Domingo:</span>
+                    <span className="text-white font-medium">Fechado</span>
                   </div>
                 </div>
               </div>
@@ -231,7 +232,7 @@ const ContactForm = () => {
                   onClick={() => window.location.href = "#"}
                 >
                   <Calendar className="mr-2 h-5 w-5" />
-                  Schedule Online
+                  Agendar Online
                 </Button>
               </div>
             </div>
