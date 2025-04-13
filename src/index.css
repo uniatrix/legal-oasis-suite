@@ -1,6 +1,7 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -94,11 +95,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-law-black text-law-white font-montserrat;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-merriweather;
+    @apply font-playfair;
   }
 }
 
@@ -108,13 +109,34 @@
 }
 
 .section-title {
-  @apply text-3xl md:text-4xl font-bold text-law-navy mb-6 font-merriweather;
+  @apply text-3xl md:text-4xl font-bold text-law-white mb-6 font-playfair;
 }
 
 .section-subtitle {
-  @apply text-xl font-semibold text-law-navy-light mb-4 font-merriweather;
+  @apply text-xl font-semibold text-law-gold mb-4 font-playfair;
 }
 
 .highlight-text {
   @apply text-law-gold font-semibold;
+}
+
+/* Modern UI Elements */
+.gold-gradient-text {
+  @apply bg-gradient-to-r from-law-gold-dark to-law-gold-light bg-clip-text text-transparent;
+}
+
+.premium-card {
+  @apply bg-gradient-to-br from-law-black-light to-law-black/90 p-6 rounded-xl shadow-xl border border-law-gold/10 backdrop-blur-sm transition-all duration-300 hover:border-law-gold/20 hover:shadow-law-gold/10;
+}
+
+.premium-button {
+  @apply bg-gradient-to-tr from-law-gold-dark to-law-gold-light hover:from-law-gold hover:to-law-gold-dark text-law-black font-semibold py-3 px-6 rounded-md shadow-lg hover:shadow-law-gold/30 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-law-gold/10;
+}
+
+.premium-button-outline {
+  @apply border-law-gold/40 text-law-white hover:bg-law-gold/10 py-3 px-6 rounded-md transition-all duration-300 transform hover:-translate-y-1 backdrop-blur-sm;
+}
+
+.premium-icon {
+  @apply bg-gradient-to-tr from-law-gold-dark to-law-gold-light rounded-full p-2 shadow-md transition-all duration-300;
 }

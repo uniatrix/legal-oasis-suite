@@ -1,14 +1,14 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Briefcase, 
-  Gavel, 
-  Scale, 
-  FileWarning, 
-  FileCheck, 
+import {
+  Briefcase,
+  Gavel,
+  Scale,
+  FileWarning,
+  FileCheck,
   Users,
-  Heart 
+  Heart
 } from "lucide-react";
 
 type PracticeArea = {
@@ -68,15 +68,15 @@ const PracticeAreas = () => {
             Oferecemos serviços jurídicos abrangentes focados na proteção dos direitos dos nossos clientes e na resolução eficaz de disputas.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {practiceAreas.map((area) => (
             <Card key={area.id} className="rounded-xl overflow-hidden border-none shadow-md hover:shadow-xl transition-all duration-300 group">
               <CardContent className="p-0">
                 <div className="bg-law-navy p-8 flex justify-center">
                   <div className="bg-white/10 backdrop-blur-sm p-4 rounded-full">
-                    {React.cloneElement(area.icon as React.ReactElement, { 
-                      className: "h-10 w-10 text-law-gold group-hover:text-white transition-colors duration-300" 
+                    {React.cloneElement(area.icon as React.ReactElement, {
+                      className: "h-10 w-10 text-law-gold group-hover:text-white transition-colors duration-300"
                     })}
                   </div>
                 </div>

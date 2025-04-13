@@ -1,104 +1,147 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
+import logoImg from "@/assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  
+  const [scrolled, setScrolled] = useState(false);
+  const [activeItem, setActiveItem] = useState("");
+
+  // Navbar height offset for scrolling (in pixels)
+  const SCROLL_OFFSET = 80;
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  // Function to handle smooth scrolling to sections with offset
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      const sectionTop = section.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: sectionTop - SCROLL_OFFSET,
+        behavior: 'smooth'
+      });
+
+      // Close mobile menu if open
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      // Update active menu item based on scroll position
+      const sections = ["about", "team", "faq", "contact"];
+      let currentActive = "";
+
+      // Calculate which section is currently most visible in the viewport
+      let maxVisiblePercentage = 0;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+
+          // Calculate how much of the section is visible as a percentage
+          const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+          const visiblePercentage = (visibleHeight > 0) ? visibleHeight / rect.height : 0;
+
+          // If this section is more visible than the previous most visible section, make it active
+          if (visiblePercentage > maxVisiblePercentage) {
+            maxVisiblePercentage = visiblePercentage;
+            currentActive = section;
+          }
+
+          // Special case for when the section is at the top of the viewport (accounting for navbar)
+          if (rect.top <= SCROLL_OFFSET && rect.bottom >= SCROLL_OFFSET + 100) {
+            currentActive = section;
+          }
+        }
+      }
+
+      setActiveItem(currentActive);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Trigger once on mount to set initial active state
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const menuItems = [
+    { id: "about", label: "Sobre Nós" },
+    { id: "team", label: "Equipe" },
+    { id: "faq", label: "Perguntas Frequentes" },
+    { id: "contact", label: "Contato" }
+  ];
+
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+    <nav className={`backdrop-blur-sm transition-all duration-300 sticky top-0 z-50 ${scrolled ? "bg-law-black/95 shadow-md" : "bg-law-black/80"
+      }`}>
       <div className="law-container">
-        <div className="flex justify-between items-center py-4">
-          <div className="flex items-center">
+        <div className="flex justify-between items-center py-3">
+          <div className="flex items-center animate-fade-in-right">
             <a href="/" className="flex items-center">
-              <span className="text-law-navy text-2xl font-bold font-merriweather">Seabra<span className="text-law-gold">Moura</span></span>
+              <img
+                src={logoImg}
+                alt="Seabra & Moura Santos Advogados"
+                className="h-16 md:h-20 transition-transform duration-300 hover:scale-105 object-contain"
+              />
             </a>
           </div>
-          
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-6 animate-fade-in">
             <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuLink href="#about" className="text-law-navy-light hover:text-law-gold transition duration-300 px-3 py-2">
-                    Sobre Nós
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink href="#team" className="text-law-navy-light hover:text-law-gold transition duration-300 px-3 py-2">
-                    Equipe
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-law-navy-light hover:text-law-gold transition duration-300">
-                    Áreas de Atuação
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      <li>
-                        <NavigationMenuLink href="#practice" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Direito Trabalhista</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Assistência jurídica completa em questões trabalhistas.
-                          </p>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink href="#practice" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Direito Previdenciário</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Assessoria para benefícios previdenciários e aposentadoria.
-                          </p>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink href="#practice" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Direito Civil</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Representação em assuntos cíveis e contratuais.
-                          </p>
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink href="#practice" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                          <div className="text-sm font-medium leading-none">Ver Todas</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Explore todos os nossos serviços jurídicos especializados.
-                          </p>
-                        </NavigationMenuLink>
-                      </li>
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink href="#contact" className="text-law-navy-light hover:text-law-gold transition duration-300 px-3 py-2">
-                    Contato
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
+              <NavigationMenuList className="space-x-2">
+                {menuItems.map((item) => (
+                  <NavigationMenuItem key={item.id}>
+                    <NavigationMenuLink
+                      href={`#${item.id}`}
+                      className={`text-law-white hover:text-law-gold transition-all duration-300 px-3 py-2 rounded-md relative ${activeItem === item.id ? 'text-law-gold' : ''}`}
+                      onMouseEnter={() => setActiveItem(item.id)}
+                      onMouseLeave={() => setActiveItem(activeItem)}
+                      onClick={(e) => scrollToSection(e, item.id)}
+                    >
+                      <span className="relative z-10">{item.label}</span>
+                      {(activeItem === item.id) && (
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-law-gold"></span>
+                      )}
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))}
               </NavigationMenuList>
             </NavigationMenu>
-            <Button className="bg-law-navy hover:bg-law-navy-light text-white transition-colors duration-300">Portal do Cliente</Button>
+            <Button className="bg-law-gold hover:bg-law-gold-dark text-law-black transition-all duration-300 font-medium rounded-md border border-law-gold/20 shadow-md hover:shadow-law-gold/20 hover:shadow-lg transform hover:-translate-y-0.5">
+              Consulta Gratuita
+            </Button>
           </div>
-          
+
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-law-navy-light focus:outline-none"
+              className="text-law-white hover:text-law-gold focus:outline-none transition-colors duration-300"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -109,41 +152,23 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        
+
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t animate-accordion-down">
+          <div className="md:hidden py-4 border-t border-law-gold/20 animate-fade-in-up">
             <div className="flex flex-col space-y-4">
-              <a 
-                href="#about" 
-                className="text-law-navy-light hover:text-law-gold transition duration-300 py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Sobre Nós
-              </a>
-              <a 
-                href="#team" 
-                className="text-law-navy-light hover:text-law-gold transition duration-300 py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Equipe
-              </a>
-              <a 
-                href="#practice" 
-                className="text-law-navy-light hover:text-law-gold transition duration-300 py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Áreas de Atuação
-              </a>
-              <a 
-                href="#contact" 
-                className="text-law-navy-light hover:text-law-gold transition duration-300 py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Contato
-              </a>
-              <Button className="bg-law-navy hover:bg-law-navy-light text-white w-full">
-                Portal do Cliente
+              {menuItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`text-law-white hover:text-law-gold transition-all duration-300 py-2 px-3 rounded-md hover:bg-law-black-light/50 ${activeItem === item.id ? 'text-law-gold bg-law-black-light/30' : ''}`}
+                  onClick={(e) => scrollToSection(e, item.id)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Button className="bg-law-gold hover:bg-law-gold-dark text-law-black transition-all duration-300 font-medium rounded-md border border-law-gold/20 shadow-md w-full">
+                Consulta Gratuita
               </Button>
             </div>
           </div>

@@ -1,24 +1,34 @@
-
 import Navbar from "@/components/Navbar";
+import PixCTA from "@/components/PixCTA";
 import Hero from "@/components/Hero";
+import AboutSection from "@/components/AboutSection";
 import TeamSection from "@/components/TeamSection";
-import PracticeAreas from "@/components/PracticeAreas";
-import ContactForm from "@/components/ContactForm";
+import FAQSection from "@/components/FAQSection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/toaster";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <Hero />
-      <div className="flex-grow">
-        <TeamSection />
-        <PracticeAreas />
-        <ContactForm />
+    <div className="min-h-screen flex flex-col bg-law-black relative">
+      {/* Subtle animated background elements */}
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-law-gold/3 rounded-full filter blur-[100px] opacity-30 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-law-gold/3 rounded-full filter blur-[100px] opacity-30 animate-pulse"></div>
       </div>
-      <Footer />
-      <Toaster />
+
+      {/* Content */}
+      <div className="relative z-10">
+        <Navbar />
+        <PixCTA />
+        <Hero />
+        <AboutSection />
+        <TeamSection />
+        <FAQSection />
+        <ContactSection />
+        <Footer />
+        <Toaster />
+      </div>
     </div>
   );
 };
