@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,15 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom colors for law firm
+				law: {
+					'navy': '#0A2342',
+					'navy-light': '#173A62',
+					'gold': '#C99C33',
+					'gold-light': '#E5BC5E',
+					'gray': '#F3F4F6',
+					'white': '#FFFFFF'
 				}
 			},
 			borderRadius: {
@@ -89,6 +99,10 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			fontFamily: {
+				'merriweather': ['Merriweather', 'serif'],
+				'inter': ['Inter', 'sans-serif']
 			}
 		}
 	},
