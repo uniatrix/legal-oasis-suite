@@ -71,8 +71,8 @@ const Chatbot = () => {
         setIsLoading(true);
 
         try {
-            // Initialize Gemini model
-            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            // Initialize Gemini model - updated to newer model version
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
             // Create prompt with context
             const prompt = `
@@ -106,12 +106,12 @@ const Chatbot = () => {
         } catch (error) {
             console.error("Erro ao processar a resposta:", error);
 
-            // Add error message
+            // More descriptive error message with fallback options
             setMessages((prev) => [
                 ...prev,
                 {
                     role: "bot",
-                    content: "Desculpe, estou enfrentando dificuldades técnicas no momento. Por favor, entre em contato conosco diretamente pelo WhatsApp (21) 98896-2456.",
+                    content: "Desculpe, estou enfrentando dificuldades técnicas no momento. Você pode: \n\n1. Tentar novamente em alguns instantes \n2. Entrar em contato direto pelo WhatsApp: (21) 98896-2456 \n3. Enviar email para: seabraemourasantosadv@hotmail.com",
                     timestamp: new Date()
                 }
             ]);

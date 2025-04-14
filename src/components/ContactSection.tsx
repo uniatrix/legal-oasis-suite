@@ -1,8 +1,21 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Mail, Phone, Globe } from "lucide-react";
 import logo2 from "@/assets/logo2.png";
 
 const ContactSection = () => {
+    // State to track if maps should be loaded
+    const [loadMaps, setLoadMaps] = useState(false);
+
+    // Load maps after component mount to avoid initial CORS issues
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoadMaps(true);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     // WhatsApp number with Brazilian country code
     const whatsappNumber = "5521988962456";
     const whatsappMessage = "Olá, preciso de assistência jurídica.";
@@ -48,14 +61,25 @@ const ContactSection = () => {
                     {offices.map(office => (
                         <div key={office.id} className="rounded-xl overflow-hidden shadow-xl border border-law-gold/10 bg-law-black-light/30 backdrop-blur-sm">
                             <div className="aspect-video w-full relative">
-                                <iframe
-                                    src={office.mapUrl}
-                                    className="absolute inset-0 w-full h-full border-0"
-                                    allowFullScreen
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                    title={`Mapa do escritório - ${office.name}`}
-                                ></iframe>
+                                {loadMaps ? (
+                                    <iframe
+                                        src={office.mapUrl}
+                                        className="absolute inset-0 w-full h-full border-0"
+                                        allowFullScreen
+                                        loading="lazy"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        title={`Mapa do escritório - ${office.name}`}
+                                        onError={() => console.error("Failed to load map")}
+                                    ></iframe>
+                                ) : (
+                                    <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-law-black-light/50">
+                                        <div className="text-center">
+                                            <MapPin className="w-8 h-8 text-law-gold mx-auto mb-2" />
+                                            <p className="text-law-gold font-medium">{office.name}</p>
+                                            <p className="text-law-white/70 text-sm mt-1">Carregando mapa...</p>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                             <div className="p-5">
                                 <div className="flex items-start gap-4">
