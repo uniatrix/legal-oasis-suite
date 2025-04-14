@@ -32,7 +32,7 @@ const attorneys: Attorney[] = [
     title: "Sócia-Fundadora",
     oab: "OAB/RJ 123.456",
     education: [
-      "Formação em Direitol pela Universidade X do Rio de Janeiro",
+      "Formação em Direito pela Universidade X do Rio de Janeiro",
       "Mestre em Direito Empresarial pela Y",
       "Especialista em Resolução de Conflitos"
     ],
