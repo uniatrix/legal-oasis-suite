@@ -5,7 +5,7 @@ import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-law-black text-law-white relative">
+    <footer className="text-law-white relative">
       {/* Subtle background decoration */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute bottom-0 right-0 w-64 h-64 bg-law-gold/3 rounded-full filter blur-[100px] opacity-30"></div>

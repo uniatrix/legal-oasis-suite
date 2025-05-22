@@ -34,7 +34,7 @@ const Chatbot = () => {
                 setMessages([
                     {
                         role: "bot",
-                        content: "Olá! Sou o assistente virtual do escritório Seabra & Moura Santos Advogados. Como posso ajudar você hoje? Você pode perguntar sobre golpes do PIX, nossos serviços jurídicos ou agendar uma consulta.",
+                        content: "Olá! Sou o assistente virtual do escritório Seabra & Moura Santos Advogados. Como posso ajudar você hoje? Você pode perguntar sobre descontos indevidos no INSS, direito do consumidor, direito imobiliário, direito do trabalho ou agendar uma consulta jurídica.",
                         timestamp: new Date()
                     }
                 ]);
@@ -72,12 +72,13 @@ const Chatbot = () => {
 
         try {
             // Initialize Gemini model - updated to newer model version
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
             // Create prompt with context
             const prompt = `
       Você é um assistente virtual do escritório de advocacia Seabra & Moura Santos Advogados.
       Você deve ser cordial, profissional e conciso em suas respostas.
+      O escritório é especializado em direito previdenciário (especialmente casos de descontos indevidos no INSS), direito do consumidor (cobranças abusivas de contas), direito imobiliário (administração de imóveis) e direito do trabalho (direitos trabalhistas).
       Baseie suas respostas nas seguintes informações sobre o escritório:
       
       ${lawInfo}

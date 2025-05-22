@@ -38,10 +38,11 @@ const attorneys: Attorney[] = [
     ],
     specialization: [
       "Direito Civil",
-      "Direito Empresarial",
+      "Direito do Consumidor",
+      "Direito Previdenciário",
       "Recuperação de Valores"
     ],
-    bio: "Com mais de 10 anos de experiência, Dra. Denise Moura é reconhecida por sua excepcional habilidade em casos complexos de recuperação de valores. Sua abordagem combina profundo conhecimento jurídico com uma compreensão aguçada das necessidades do cliente, resultando em uma alta taxa de sucesso em suas causas.",
+    bio: "Com mais de 10 anos de experiência, Dra. Denise Moura é reconhecida por sua excepcional habilidade em casos complexos de recuperação de valores e direito do consumidor. Sua abordagem combina profundo conhecimento jurídico com uma compreensão aguçada das necessidades do cliente, resultando em uma alta taxa de sucesso em suas causas.",
     imageUrl: "/attorneys/denise.jpg",
     displayInitial: "D"
   },
@@ -56,11 +57,12 @@ const attorneys: Attorney[] = [
       "MBA em Gestão Jurídica"
     ],
     specialization: [
-      "Direito Bancário",
-      "Fraudes Financeiras",
-      "Crimes Digitais"
+      "Direito do Trabalho",
+      "Direito Imobiliário",
+      "Direito Previdenciário",
+      "Fraudes Financeiras"
     ],
-    bio: "Dr. Carlos Seabra dedica-se há mais de 15 anos à defesa de clientes vítimas de fraudes financeiras e golpes digitais. Sua expertise em direito bancário e sua visão estratégica transformaram-no em referência nacional no combate a fraudes do PIX e outras transações eletrônicas.",
+    bio: "Dr. Carlos Seabra dedica-se há mais de 15 anos à defesa de clientes em diversas áreas do direito. Sua expertise em direito imobiliário, trabalhista e previdenciário o tornou referência nacional para quem busca soluções jurídicas eficazes e personalizadas para cada caso.",
     imageUrl: "/attorneys/carlos.jpg",
     displayInitial: "C"
   }
@@ -80,11 +82,11 @@ const getAttorneyInitial = (attorney: Attorney): string => {
 const TeamSection = () => {
   // WhatsApp number with Brazilian country code
   const whatsappNumber = "5521988962456";
-  const whatsappMessage = "Olá, gostaria de saber mais sobre os serviços do escritório.";
+  const whatsappMessage = "Olá, sou aposentado do INSS e tive descontos indevidos. Preciso de ajuda.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <section id="team" className="py-20 bg-law-black-light relative">
+    <section id="team" className="py-20 relative">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute top-0 left-0 w-96 h-96 bg-law-gold/5 rounded-full filter blur-3xl opacity-30"></div>
@@ -106,7 +108,7 @@ const TeamSection = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-law-gold-dark to-law-gold mx-auto mb-8"></div>
           <p className="text-law-white/80 text-lg leading-relaxed mb-6">
-            Seabra & Moura Santos Advogados é um escritório especializado em direito civil e bancário, reconhecido por sua excelência e pelos resultados obtidos para seus clientes.
+            Seabra & Moura Santos Advogados é um escritório especializado em diversas áreas do direito, reconhecido por sua excelência e pelos resultados obtidos para seus clientes.
           </p>
         </div>
 

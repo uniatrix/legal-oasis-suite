@@ -1,15 +1,15 @@
 import { Button } from "@/components/ui/button";
-import pixImage from "@/assets/pix.webp";
+import inssImage from "@/assets/meuinss.png";
 import logoImg from "@/assets/logo.png";
 
-const PixCTA = () => {
+const InssAdvertisingCTA = () => {
     // WhatsApp number with Brazilian country code
     const whatsappNumber = "5521988962456";
-    const whatsappMessage = "Olá, fui vítima de um golpe PIX e preciso de ajuda.";
+    const whatsappMessage = "Olá, preciso de assistência jurídica. Gostaria de uma consulta.";
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
-        <section className="bg-gradient-to-br from-law-black via-law-black to-law-black-light py-16 md:py-24 border-y border-law-gold/10 relative overflow-hidden">
+        <section className="py-16 md:py-24 border-y border-law-gold/10 relative overflow-hidden">
             {/* Background decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-law-gold/5 rounded-full filter blur-[100px] opacity-30 animate-pulse"></div>
@@ -17,7 +17,7 @@ const PixCTA = () => {
             </div>
 
             <div className="law-container max-w-6xl mx-auto px-4">
-                {/* Main PIX card */}
+                {/* Main INSS card */}
                 <div className="rounded-[2rem] overflow-hidden shadow-2xl border border-law-gold/20 animate-fade-in relative min-h-[500px] md:min-h-[600px] group backdrop-blur-sm">
                     {/* Background gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-law-black/95 via-law-black/85 to-law-black/75 z-10 transition-opacity duration-700 group-hover:opacity-75"></div>
@@ -25,8 +25,8 @@ const PixCTA = () => {
                     {/* Background image */}
                     <div className="absolute inset-0 z-0">
                         <img
-                            src={pixImage}
-                            alt="PIX"
+                            src={inssImage}
+                            alt="INSS"
                             className="w-full h-full object-cover opacity-40 transition-transform duration-1000 scale-105 group-hover:scale-110"
                         />
                     </div>
@@ -48,24 +48,22 @@ const PixCTA = () => {
                             data-aos="fade-up"
                             data-aos-delay="400"
                         >
-                            Foi vítima de um{" "}
+                            Você é
                             <span className="bg-gradient-to-r from-law-gold-dark to-law-gold bg-clip-text text-transparent">
-                                GOLPE PIX
-                            </span>?
+                                {" APOSENTADO DO INSS "}
+                            </span>
+                            e teve descontos indevidos?
                         </h2>
 
                         <div className="space-y-4 mb-8 max-w-3xl" data-aos="fade-up" data-aos-delay="600">
                             <p className="text-xl md:text-2xl text-law-white/90 leading-relaxed">
-                                Escritório especializado em fraudes bancárias e casos de golpe do PIX{" "}
-                                <span className="font-semibold text-law-gold">
-                                    acima de R$10.000,00
-                                </span>.
+                                Escritório especializado em causas contra o INSS e recuperação de valores descontados indevidamente do seu benefício.
                             </p>
 
                             <p className="text-xl md:text-2xl text-law-gold font-semibold leading-relaxed">
-                                É possível recuperar os valores perdidos.{" "}
+                                Faça valer o seu DIREITO.{" "}
                                 <span className="text-law-white">
-                                    Não fique no prejuízo!
+                                    Indenização em DOBRO do que foi descontado e também por danos morais!
                                 </span>
                             </p>
                         </div>
@@ -79,7 +77,7 @@ const PixCTA = () => {
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-8 h-8 fill-current transition-transform duration-300 group-hover:scale-110">
                                         <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
                                     </svg>
-                                    <span className="text-xl font-bold tracking-wider">Consulta Gratuita</span>
+                                    <span className="text-xl font-bold tracking-wider">Consulta Jurídica Gratuita</span>
                                 </div>
                             </Button>
 
@@ -113,4 +111,4 @@ const PixCTA = () => {
     );
 };
 
-export default PixCTA; 
+export default InssAdvertisingCTA; 

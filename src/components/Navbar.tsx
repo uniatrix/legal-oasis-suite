@@ -14,6 +14,11 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeItem, setActiveItem] = useState("");
 
+  // WhatsApp number with Brazilian country code
+  const whatsappNumber = "5521988962456";
+  const whatsappMessage = "Olá, preciso de assistência jurídica. Gostaria de uma consulta.";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
   // Navbar height offset for scrolling (in pixels)
   const SCROLL_OFFSET = 80;
 
@@ -96,7 +101,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`backdrop-blur-sm transition-all duration-300 sticky top-0 z-50 ${scrolled ? "bg-law-black/95 shadow-md" : "bg-law-black/80"
+    <nav className={`backdrop-blur-sm transition-all duration-300 sticky top-0 z-50 ${scrolled ? "bg-law-black/90 shadow-md" : "bg-transparent"
       }`}>
       <div className="law-container">
         <div className="flex justify-between items-center py-3">
@@ -132,8 +137,11 @@ const Navbar = () => {
                 ))}
               </NavigationMenuList>
             </NavigationMenu>
-            <Button className="bg-law-gold hover:bg-law-gold-dark text-law-black transition-all duration-300 font-medium rounded-md border border-law-gold/20 shadow-md hover:shadow-law-gold/20 hover:shadow-lg transform hover:-translate-y-0.5">
-              Consulta Gratuita
+            <Button
+              className="bg-law-gold hover:bg-law-gold-dark text-law-black transition-all duration-300 font-medium rounded-md border border-law-gold/20 shadow-md hover:shadow-law-gold/20 hover:shadow-lg transform hover:-translate-y-0.5"
+              onClick={() => window.open(whatsappUrl, '_blank')}
+            >
+              Consulta Jurídica Gratuita
             </Button>
           </div>
 
@@ -167,8 +175,11 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <Button className="bg-law-gold hover:bg-law-gold-dark text-law-black transition-all duration-300 font-medium rounded-md border border-law-gold/20 shadow-md w-full">
-                Consulta Gratuita
+              <Button
+                className="bg-law-gold hover:bg-law-gold-dark text-law-black transition-all duration-300 font-medium rounded-md border border-law-gold/20 shadow-md w-full"
+                onClick={() => window.open(whatsappUrl, '_blank')}
+              >
+                Consulta Jurídica Gratuita
               </Button>
             </div>
           </div>

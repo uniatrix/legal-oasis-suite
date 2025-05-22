@@ -18,7 +18,7 @@ const ContactSection = () => {
 
     // WhatsApp number with Brazilian country code
     const whatsappNumber = "5521988962456";
-    const whatsappMessage = "Olá, preciso de assistência jurídica.";
+    const whatsappMessage = "Olá, preciso de assistência jurídica. Gostaria de uma consulta.";
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     // Office locations with coordinates (for maps)
@@ -38,7 +38,7 @@ const ContactSection = () => {
     ];
 
     return (
-        <section id="contact" className="py-16 bg-law-black relative">
+        <section id="contact" className="py-16 relative">
             {/* Background decoration */}
             <div className="absolute inset-0 overflow-hidden z-0">
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-law-gold/5 rounded-full filter blur-3xl opacity-30"></div>
