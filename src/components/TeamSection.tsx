@@ -28,7 +28,7 @@ interface Attorney {
 const attorneys: Attorney[] = [
   {
     id: 1,
-    name: "Dra. Denise Moura",
+    name: "Dra. Denise Santos",
     title: "Sócia-Fundadora",
     oab: "OAB/RJ 123.456",
     education: [
@@ -37,12 +37,11 @@ const attorneys: Attorney[] = [
       "Especialista em Resolução de Conflitos"
     ],
     specialization: [
-      "Direito Civil",
-      "Direito do Consumidor",
-      "Direito Previdenciário",
-      "Recuperação de Valores"
+      "Direito Imobiliário",
+      "Direito Sucessório (Inventários)",
+      "Direito de Família",
     ],
-    bio: "Com mais de 10 anos de experiência, Dra. Denise Moura é reconhecida por sua excepcional habilidade em casos complexos de recuperação de valores e direito do consumidor. Sua abordagem combina profundo conhecimento jurídico com uma compreensão aguçada das necessidades do cliente, resultando em uma alta taxa de sucesso em suas causas.",
+    bio: "Com mais de 20 anos de experiência, Dra. Denise Santos é especialista em Direito Imobiliário, Sucessório (incluindo inventários judiciais e extrajudiciais) e de Família. Sua vasta experiência e dedicação garantem uma assessoria jurídica completa e eficaz na defesa dos interesses de seus clientes.",
     imageUrl: "/attorneys/denise.jpg",
     displayInitial: "D"
   },
@@ -58,11 +57,11 @@ const attorneys: Attorney[] = [
     ],
     specialization: [
       "Direito do Trabalho",
-      "Direito Imobiliário",
       "Direito Previdenciário",
-      "Fraudes Financeiras"
+      "Direito Imobiliário (Condomínios)",
+      "Consultoria Jurídica Empresarial"
     ],
-    bio: "Dr. Carlos Seabra dedica-se há mais de 15 anos à defesa de clientes em diversas áreas do direito. Sua expertise em direito imobiliário, trabalhista e previdenciário o tornou referência nacional para quem busca soluções jurídicas eficazes e personalizadas para cada caso.",
+    bio: "Com mais de 30 anos de experiência, Dr. Carlos Seabra possui vasta atuação em consultoria jurídica empresarial, com ênfase em Direito do Trabalho e Direito Previdenciário, inclusive na área de Direito Processual do Trabalho. Atuou como Defensor Público Dativo na Justiça Federal em matéria previdenciária e possui ampla experiência em Direito Imobiliário na defesa de condomínios residenciais e comerciais.",
     imageUrl: "/attorneys/carlos.jpg",
     displayInitial: "C"
   }
@@ -86,7 +85,7 @@ const TeamSection = () => {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <section id="team" className="py-20 relative">
+    <section id="team" className="text-law-white py-20 relative">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute top-0 left-0 w-96 h-96 bg-law-gold/5 rounded-full filter blur-3xl opacity-30"></div>
@@ -113,60 +112,48 @@ const TeamSection = () => {
         </div>
 
         {/* Team profiles */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 mb-16">
           {attorneys.map((attorney) => (
-            <div key={attorney.id} className="bg-gradient-to-b from-law-black/90 to-law-black-light/80 rounded-2xl overflow-hidden border border-law-gold/10 shadow-xl transition-all duration-300 hover:shadow-law-gold/5 hover:shadow-2xl group">
-              <div className="p-8">
-                <div className="flex flex-col md:flex-row gap-8">
-                  <div className="w-full md:w-1/3">
-                    <div className="aspect-square bg-law-gold/10 rounded-xl overflow-hidden">
-                      {/* Placeholder for attorney image */}
-                      <div className="w-full h-full bg-gradient-to-br from-law-gold/20 to-law-black flex items-center justify-center">
-                        <span className="text-6xl text-law-gold/50">{getAttorneyInitial(attorney)}</span>
-                      </div>
-                    </div>
-                    <div className="text-center mt-4">
-                      <h3 className="text-xl font-bold text-law-gold">{attorney.name}</h3>
-                      <p className="text-law-white/70 text-sm">{attorney.title}</p>
-                      <p className="text-law-gold/90 text-sm mt-1">{attorney.oab}</p>
-                    </div>
-                  </div>
-
-                  <div className="w-full md:w-2/3 space-y-6">
-                    <p className="text-law-white/90 leading-relaxed">
-                      {attorney.bio}
-                    </p>
-
-                    <div className="mb-2">
-                      <div className="flex items-center mb-4">
-                        <Award className="text-law-gold mr-3 h-5 w-5" />
-                        <h4 className="text-law-white font-semibold">Formação</h4>
-                      </div>
-                      <ul className="list-disc list-inside ml-8 space-y-2">
-                        {attorney.education.map((edu, index) => (
-                          <li key={index} className="text-law-white/70 text-sm">
-                            {edu}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mb-2">
-                      <div className="flex items-center mb-4">
-                        <Scale className="text-law-gold mr-3 h-5 w-5" />
-                        <h4 className="text-law-white font-semibold">Áreas de Atuação</h4>
-                      </div>
-                      <div className="flex flex-wrap gap-2 ml-8">
-                        {attorney.specialization.map((spec, index) => (
-                          <span key={index} className="bg-law-gold/10 text-law-white/90 text-xs px-3 py-1 rounded-full border border-law-gold/20">
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+            <div
+              key={attorney.id}
+              className="bg-law-black-lighter/60 backdrop-blur-md rounded-xl border border-law-blue-dark/30 shadow-2xl p-6 md:p-8 group transition-all duration-300 hover:border-law-gold/50 hover:shadow-law-gold/10"
+            >
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 md:gap-8 mb-6">
+                {/* Attorney Initial Display */}
+                <div className="flex-shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-law-gold/50 shadow-lg bg-law-black-light flex items-center justify-center">
+                  <span className="text-5xl md:text-6xl font-semibold text-law-gold/70">{getAttorneyInitial(attorney)}</span>
+                </div>
+                {/* Name, Title, OAB */}
+                <div className="text-center sm:text-left flex-grow">
+                  <h3 className="text-2xl md:text-3xl font-bold text-law-gold font-playfair mb-1">{attorney.name}</h3>
+                  <p className="text-law-white-light font-medium text-sm md:text-base mb-1">{attorney.title}</p>
+                  <p className="text-law-gold/80 text-xs md:text-sm font-mono tracking-wider">{attorney.oab}</p>
                 </div>
               </div>
+
+              {/* Bio */}
+              <p className="text-law-white/80 leading-relaxed text-sm mb-6 text-justify sm:text-left">
+                {attorney.bio}
+              </p>
+
+              {/* Specializations */}
+              <div className="mb-6">
+                <div className="flex items-center mb-3">
+                  <Scale className="text-law-gold mr-2.5 h-5 w-5 flex-shrink-0" />
+                  <h4 className="text-law-white font-semibold text-base md:text-lg">Especialidades</h4>
+                </div>
+                <div className="flex flex-wrap gap-2 pl-1">
+                  {attorney.specialization.map((spec, index) => (
+                    <span
+                      key={index}
+                      className="bg-law-gold/10 text-law-gold text-xs font-medium px-3 py-1 rounded-full border border-law-gold/30 hover:bg-law-gold/20 transition-colors duration-200"
+                    >
+                      {spec}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
             </div>
           ))}
         </div>

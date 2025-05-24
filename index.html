@@ -4,6 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    script-src 'self' https://maps.googleapis.com https://cdn.gpteng.co 'unsafe-inline' 'unsafe-eval'; 
+    style-src 'self' https://maps.googleapis.com https://fonts.googleapis.com 'unsafe-inline'; 
+    img-src 'self' data: https://maps.gstatic.com https://*.googleapis.com https://*.ggpht.com https://lovable.dev;
+    frame-src 'self' https://www.google.com; 
+    connect-src 'self' https://maps.googleapis.com https://*.googleapis.com https://*.google.com https://*.gstatic.com https://seabraemoura.app.n8n.cloud https://nrzftrxvlmtdlgyjyypz.supabase.co;
+    font-src 'self' data: https://fonts.gstatic.com;
+  ">
   <title>Seabra & Moura Santos Advogados</title>
   <meta name="description" content="Escritório especializado em fraudes bancárias e casos de golpe do PIX" />
   <meta name="author" content="Seabra & Moura Santos" />

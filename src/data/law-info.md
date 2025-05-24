@@ -1,53 +1,50 @@
+\
 # Seabra & Moura Santos Advogados - Informações Gerais
 
 ## Sobre o Escritório
 
-O escritório Seabra & Moura Santos Advogados é especializado em direito civil e bancário, reconhecido por sua excelência e pelos resultados obtidos para seus clientes. Nossa equipe é dedicada a oferecer representação jurídica especializada, garantindo que os direitos dos nossos clientes sejam protegidos.
+O escritório Seabra & Moura Santos Advogados é especializado em diversas áreas do direito, reconhecido por sua excelência e pelos resultados obtidos para seus clientes. Nossa equipe é dedicada a oferecer representação jurídica especializada, garantindo que os direitos dos nossos clientes sejam protegidos e que obtenham os melhores resultados.
 
-## Áreas de Atuação
+## Áreas de Atuação Principais
 
-### Direito Bancário e Fraudes Financeiras
-- Especialistas em casos de fraudes do PIX e transações eletrônicas
-- Recuperação de valores perdidos em golpes bancários
-- Contestação de transações não autorizadas
-- Processos contra instituições financeiras por falhas de segurança
+### Direito Previdenciário (Foco em INSS)
+- **Descontos Indevidos no INSS**: Especialistas em identificar e reaver valores descontados indevidamente de aposentadorias e pensões.
+  - Empréstimos consignados não solicitados.
+  - Descontos de associações não autorizadas.
+  - Cobranças de seguros e taxas indevidas.
+  - Outros descontos não autorizados.
+- **Benefícios Previdenciários**: Auxílio em processos de concessão e revisão de aposentadorias, pensões e outros benefícios do INSS.
+- **Indenizações**: Buscamos a devolução em dobro dos valores descontados e indenização por danos morais.
 
-### Direito Civil
-- Contratos e obrigações
-- Responsabilidade civil
-- Direito do consumidor
-- Danos morais e materiais
+### Direito do Consumidor
+- **Cobranças Abusivas**: Defesa contra cobranças indevidas em contas de luz, água, gás, telefone.
+- **Problemas com Planos de Saúde**: Atuação para garantir direitos, buscando liminares e indenizações contra negativas de cobertura, reajustes abusivos, etc.
+- **Outras Questões Consumeristas**: Defesa dos direitos do consumidor em geral.
 
-### Outros Serviços
-- Direito Trabalhista
-- Direito Previdenciário
-- Assessoria jurídica empresarial
+### Direito Imobiliário
+- **Administração de Imóveis Alugados**: Gestão completa e eficaz de imóveis, com assessoria jurídica inclusa para proprietários.
+- **Defesa de Condomínios**: Assessoria e representação para condomínios edilícios, residenciais e comerciais.
+- **Questões Contratuais Imobiliárias**: Análise e elaboração de contratos de compra, venda e locação.
+
+### Direito do Trabalho
+- **Reclamações Trabalhistas**: Auxílio a trabalhadores demitidos que não receberam seus direitos (aviso prévio, férias, 13º, FGTS, etc.).
+- **Consultoria Trabalhista Empresarial**: Orientação para empresas sobre legislação trabalhista e prevenção de litígios.
+- Atuação na Justiça do Trabalho, com possibilidade de honorários de êxito (cliente só paga se ganhar a ação).
+
+### Direito Sucessório e de Família
+- **Inventários Judiciais e Extrajudiciais**: Condução de processos de partilha de bens.
+- **Questões de Família**: Divórcios, pensão alimentícia, guarda de filhos, entre outros.
 
 ## Nossa Equipe
 
+### Dra. Denise Santos
+Sócia-Fundadora, com mais de 20 anos de experiência. Dra. Denise Santos é especialista em Direito Imobiliário, Sucessório (incluindo inventários judiciais e extrajudiciais) e de Família. Sua vasta experiência e dedicação garantem uma assessoria jurídica completa e eficaz na defesa dos interesses de seus clientes.
+
 ### Dr. Carlos Seabra
-Sócio-Fundador, especialista em Direito Bancário e Fraudes Financeiras. Com mais de 15 anos de experiência, Dr. Carlos Seabra dedica-se à defesa de clientes vítimas de fraudes financeiras e golpes digitais. Sua expertise em direito bancário e sua visão estratégica transformaram-no em referência nacional no combate a fraudes do PIX e outras transações eletrônicas.
-
-### Dra. Denise Moura
-Sócia-Fundadora, especialista em Direito Civil e Recuperação de Valores. Com mais de 20 anos de experiência, Dra. Denise Moura é reconhecida por sua excepcional habilidade em casos complexos de recuperação de valores. Sua abordagem combina profundo conhecimento jurídico com uma compreensão aguçada das necessidades do cliente, resultando em uma alta taxa de sucesso em suas causas.
-
-## Golpes do PIX - O Que Você Precisa Saber
-
-### O que é o Golpe do PIX?
-Em geral, os golpes relacionados ao PIX começam com a obtenção indevida dos dados do usuário, muitas vezes por meio de links falsos enviados via SMS, WhatsApp ou outros aplicativos. Com acesso à conta bancária do usuário, o golpista pode efetuar transações utilizando o PIX. Em alguns casos, o fraudador pode se fazer passar por um funcionário do banco e entrar em contato com a vítima para obter mais informações. Assim que o golpista adquire as informações necessárias, ele pode acessar a conta do usuário e iniciar transferências por meio do PIX, além de criar perfis falsos no WhatsApp para solicitar transferências dos contatos da vítima, alegando situações de emergência.
-
-### Fui vítima do Golpe do Pix. E agora?
-Entre em contato imediatamente com o seu banco, pois, em certos casos, eles podem oferecer algum tipo de assistência. Peça o bloqueio preventivo dos seus recursos em conta e, em seguida, consulte um advogado especializado para relatar a situação e planejar os próximos passos. Não se esqueça de registrar um boletim de ocorrência o mais rápido possível.
-
-### Consigo recuperar meu dinheiro?
-Na maioria esmagadora dos casos, isso é verdade! Apesar de algumas opiniões discordantes, a visão predominante no sistema judiciário é que os bancos têm uma responsabilidade clara nessas situações e devem compensar completamente os prejuízos financeiros.
-
-### Além de recuperar o dinheiro, é possível receber uma indenização?
-Em muitas situações, é viável buscar uma compensação por omissões ou ações inadequadas do seu banco. Contudo, é importante destacar que a elegibilidade para indenização varia caso a caso, portanto, é crucial que um advogado avalie a sua situação de forma personalizada.
+Sócio-Fundador, com mais de 30 anos de experiência. Dr. Carlos Seabra possui vasta atuação em consultoria jurídica empresarial, com ênfase em Direito do Trabalho e Direito Previdenciário, inclusive na área de Direito Processual do Trabalho. Atuou como Defensor Público Dativo na Justiça Federal em matéria previdenciária e possui ampla experiência em Direito Imobiliário na defesa de condomínios residenciais e comerciais.
 
 ## Como Podemos te Ajudar
-
-A equipe da Seabra & Moura Santos, especializada em Direito Bancário e Direito do Consumidor, está preparada para ajudar a proteger seus direitos e recuperar seus valores. Nossa equipe tem ajudado centenas de clientes a recuperar valores perdidos em fraudes bancárias em todo o Brasil.
+A equipe da Seabra & Moura Santos, especializada em diversas áreas do Direito, está preparada para ajudar a proteger seus direitos e garantir que você obtenha os melhores resultados. Nossa equipe tem ajudado centenas de clientes a resolverem suas questões jurídicas com sucesso.
 
 ## Contato
 
@@ -58,35 +55,37 @@ A equipe da Seabra & Moura Santos, especializada em Direito Bancário e Direito 
 ### Meios de Contato
 - **Telefone**: (21) 98896-2456
 - **E-mail**: seabraemourasantosadv@hotmail.com
-- **WhatsApp**: Disponível para consulta gratuita
-- **Atendimento**: Online em todo Brasil
+- **WhatsApp**: Disponível para consulta jurídica gratuita.
+- **Atendimento**: Online em todo Brasil e presencial nos nossos escritórios.
 
-## Horário de Funcionamento
-- Segunda a Sexta-feira: 9h às 18h
-- Plantão jurídico 24/7 para casos urgentes via WhatsApp
+## FAQ - Perguntas Frequentes (Adaptadas ao novo foco)
 
-## FAQ - Perguntas Frequentes
+### O que são descontos indevidos no benefício do INSS?
+São quaisquer valores descontados de seu benefício sem sua autorização ou conhecimento. Isso pode incluir empréstimos consignados que você não solicitou, seguros que nunca contratou, taxas de associações que não conhece, ou mesmo serviços indevidos.
 
-### O que é o Golpe do PIX?
-Em geral, os golpes relacionados ao PIX começam com a obtenção indevida dos dados do usuário, muitas vezes por meio de links falsos enviados via SMS, WhatsApp ou outros aplicativos. Com acesso à conta bancária do usuário, o golpista pode efetuar transações utilizando o PIX.
+### Percebi descontos indevidos no meu benefício. O que devo fazer?
+Obtenha o extrato detalhado do seu benefício (Meu INSS), identifique os descontos não reconhecidos e procure um advogado especializado para analisar seu caso.
 
-### Fui vítima do Golpe do Pix. E agora?
-Entre em contato imediatamente com o seu banco, peça o bloqueio preventivo dos seus recursos em conta e consulte um advogado especializado. Não se esqueça de registrar um boletim de ocorrência.
+### É possível recuperar os valores descontados indevidamente do INSS?
+Sim! Além de recuperar todos os valores descontados indevidamente, a lei garante o direito à indenização em dobro e por danos morais.
 
-### Consigo recuperar meu dinheiro?
-Na maioria dos casos, sim. Os bancos têm uma responsabilidade clara nessas situações e devem compensar os prejuízos financeiros.
+### Qual o prazo para entrar com ação contra descontos indevidos no INSS?
+O prazo é de 5 anos, contados a partir da data de cada desconto. Aja rapidamente.
 
-### Além de recuperar o dinheiro, é possível receber uma indenização?
-Em muitas situações, é viável buscar uma compensação por omissões ou ações inadequadas do seu banco, mas a elegibilidade para indenização varia caso a caso.
+### Fui cobrado indevidamente na minha conta de luz/água/telefone. O que fazer?
+Guarde todos os comprovantes e procure um advogado especializado em Direito do Consumidor. É possível reaver os valores pagos indevidamente, muitas vezes em dobro.
 
-### Quanto tempo demora para recuperar o dinheiro de um golpe do PIX?
-O tempo de recuperação varia conforme o caso. Quando resolvido administrativamente com o banco, pode levar algumas semanas. Em processos judiciais, o prazo médio é de 8 a 18 meses, dependendo da complexidade do caso e da jurisdição.
+### Meu plano de saúde negou um procedimento. Tenho direitos?
+Sim. Negativas indevidas de cobertura por planos de saúde são comuns. Um advogado pode auxiliar na obtenção de liminares para garantir o tratamento e buscar indenizações.
+
+### Fui demitido e não recebi meus direitos. O escritório pode ajudar?
+Sim, nosso escritório auxilia na Justiça do Trabalho. Você só paga se ganhar a ação.
+
+### Preciso fazer um inventário. Como proceder?
+Seja judicial ou extrajudicial (em cartório), nosso escritório pode conduzir todo o processo de inventário e partilha de bens.
 
 ### Vocês trabalham com honorários de êxito?
-Sim, em determinados casos trabalhamos com honorários de êxito, o que significa que nossos honorários são cobrados apenas quando conseguimos recuperar seus valores.
+Sim, em determinados casos, especialmente em Direito do Trabalho e algumas ações de Consumidor e Previdenciário, trabalhamos com honorários de êxito.
 
 ### O atendimento online é tão eficiente quanto o presencial?
-Sim! Nosso atendimento online é completamente eficiente e seguro. Através de videochamadas, e-mails e mensagens, conseguimos atender clientes em todo o Brasil com a mesma qualidade do atendimento presencial.
-
-### Vocês atendem casos em outros estados além do Rio de Janeiro?
-Sim, atendemos casos em todo o território nacional através do nosso sistema de atendimento online. 
+Sim! Nosso atendimento online é completamente eficiente e seguro, permitindo atender clientes em todo o Brasil.

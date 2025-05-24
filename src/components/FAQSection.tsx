@@ -33,7 +33,7 @@ const FAQSection = () => {
     ];
 
     return (
-        <section id="faq" className="pt-6 pb-12 relative">
+        <section id="faq" className="text-law-white pt-6 pb-12 relative">
             {/* Background decoration */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-law-gold/3 rounded-full filter blur-[100px] opacity-30"></div>

@@ -9,7 +9,7 @@ const InssAdvertisingCTA = () => {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
-        <section className="py-16 md:py-24 border-y border-law-gold/10 relative overflow-hidden">
+        <section className="text-law-white py-16 md:py-24 border-y border-law-gold/10 relative overflow-hidden">
             {/* Background decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-law-gold/5 rounded-full filter blur-[100px] opacity-30 animate-pulse"></div>
