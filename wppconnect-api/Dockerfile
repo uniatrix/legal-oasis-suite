@@ -19,7 +19,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm install --omit=dev
+RUN npm ci --omit=dev
 # If you have issues with WPPConnect not finding Chromium, you might need to force install its puppeteer version
 # RUN npm install puppeteer@YOUR_WPPCONNECT_EXPECTED_VERSION --unsafe-perm=true --allow-root
 
