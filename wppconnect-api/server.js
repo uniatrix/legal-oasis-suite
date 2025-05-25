@@ -1,4 +1,4 @@
-const wppconnect = require('wppconnect');
+const wppconnect = require('@wppconnect-team/wppconnect');
 const express = require('express');
 const cors = require('cors');
 
