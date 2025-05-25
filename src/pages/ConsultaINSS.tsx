@@ -41,6 +41,7 @@ const ConsultaINSS: React.FC = () => {
         formState: { errors, isSubmitting, isValid, isDirty }, // isSubmitting will be used for the final submission
         watch,
         reset,
+        getValues, // Added getValues
     } = useForm<IFormInput>({
         defaultValues: {
             nome: '',
@@ -57,25 +58,39 @@ const ConsultaINSS: React.FC = () => {
     const [formData, setFormData] = useState<IFormInput | null>(null);
     const [isSubmittingToN8N, setIsSubmittingToN8N] = useState(false); // New state for final submission
     const [bookedSlots, setBookedSlots] = useState<BookedSlot[]>([]); // New state for booked slots
+    const [isNavigatingToThankYou, setIsNavigatingToThankYou] = useState(false); // Added state
 
     const formRef = useRef<HTMLFormElement>(null);
-    const watchAllFields = watch();
     const navigate = useNavigate();
+
+    // Refs for critical states to ensure latest value is read in async/event contexts
+    const isNavigatingToThankYouRef = useRef(isNavigatingToThankYou);
+    const isSubmittingToN8NRef = useRef(isSubmittingToN8N);
+
+    useEffect(() => {
+        isNavigatingToThankYouRef.current = isNavigatingToThankYou;
+    }, [isNavigatingToThankYou]);
+
+    useEffect(() => {
+        isSubmittingToN8NRef.current = isSubmittingToN8N;
+    }, [isSubmittingToN8N]);
 
     useEffect(() => {
         const missing = [];
-        if (!watchAllFields.nome) missing.push('Nome');
-        if (!watchAllFields.email) missing.push('Email');
-        if (!watchAllFields.telefone) missing.push('Telefone');
-        if (!watchAllFields.valorPensao) missing.push('Valor da Pensão');
-        if (!watchAllFields.tempoContribuicao) missing.push('Tempo de Contribuição');
+        const currentValues = getValues(); // Use getValues for immediate state
+        if (!currentValues.nome) missing.push('Nome');
+        if (!currentValues.email) missing.push('Email');
+        if (!currentValues.telefone) missing.push('Telefone');
+        if (!currentValues.valorPensao) missing.push('Valor da Pensão');
+        if (!currentValues.tempoContribuicao) missing.push('Tempo de Contribuição');
         setMissingFields(missing);
     }, [
-        watchAllFields.nome,
-        watchAllFields.email,
-        watchAllFields.telefone,
-        watchAllFields.valorPensao,
-        watchAllFields.tempoContribuicao
+        getValues, // getValues is stable, but we want to react to field changes for UI
+        watch('nome'), // Re-run when these specific fields change for the missingFields UI
+        watch('email'),
+        watch('telefone'),
+        watch('valorPensao'),
+        watch('tempoContribuicao')
     ]);
 
     useEffect(() => {
@@ -111,6 +126,95 @@ const ConsultaINSS: React.FC = () => {
         }
     }, [showDatePicker]);
 
+    // Effect to handle abandoned leads
+    useEffect(() => {
+        // CONSOLE LOG 4: Check if useEffect itself runs and listeners are attached
+        console.log('[AbandonedLead] useEffect for abandoned leads RUNNING. Attaching listeners.');
+
+        const sendAbandonedLeadData = async () => {
+            const formValues = getValues(); // Get current values at the moment of execution
+            const isAnyFieldFilled = Object.values(formValues).some(
+                (value) => value && typeof value === 'string' && value.trim() !== ''
+            );
+
+            // CONSOLE LOG 1 & 2: Check if function is entered and basic conditions
+            console.log('[AbandonedLead] sendAbandonedLeadData entered. isAnyFieldFilled:', isAnyFieldFilled);
+            console.log('[AbandonedLead] Conditions check: isNavigatingToThankYou:', isNavigatingToThankYouRef.current, '| isSubmittingToN8N:', isSubmittingToN8NRef.current/*, '| showDatePicker:', showDatePickerRef.current*/);
+
+            if (
+                !isNavigatingToThankYouRef.current &&
+                !isSubmittingToN8NRef.current &&
+                isAnyFieldFilled
+                // && !showDatePickerRef.current // This condition is removed
+            ) {
+                console.log('[AbandonedLead] Main IF condition MET. Attempting to send data.');
+                const payload = {
+                    nome: formValues.nome || null,
+                    email: formValues.email || null,
+                    telefone: formValues.telefone || null,
+                    valorpensao: formValues.valorPensao || null,
+                    tempocontribuicao: formValues.tempoContribuicao || null,
+                };
+
+                const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+                const url = 'https://nrzftrxvlmtdlgyjyypz.supabase.co/rest/v1/abandoned_leads';
+                const headers = {
+                    'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yemZ0cnh2bG10ZGxneWp5eXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwODExNTUsImV4cCI6MjA2MzY1NzE1NX0.e25wq1v-w438dAFe7Zjwu5HRz4xW3sL8MftnZEvnfgI',
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yemZ0cnh2bG10ZGxneWp5eXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwODExNTUsImV4cCI6MjA2MzY1NzE1NX0.e25wq1v-w438dAFe7Zjwu5HRz4xW3sL8MftnZEvnfgI',
+                    'Prefer': 'return=minimal'
+                    // Content-Type is set by the Blob for sendBeacon
+                };
+
+                // For sendBeacon, headers need to be part of the URL for some services or handled by a proxy/cloud function if strict header requirements exist
+                // Supabase REST API expects headers for auth. sendBeacon doesn't directly support setting arbitrary headers like fetch.
+                // This means direct sendBeacon to Supabase with API key in header might not work.
+                // Let's try fetch with keepalive again, but with more robust logging for the request itself.
+
+                // Reverting to fetch with keepalive due to sendBeacon header limitations for Supabase direct API calls.
+                // Adding a console log specifically before the fetch call.
+                console.log('[AbandonedLead] Attempting fetch with keepalive. Payload:', JSON.stringify(payload));
+
+                // Using synchronous XMLHttpRequest as a last resort for page unload
+                try {
+                    const xhr = new XMLHttpRequest();
+                    // The third parameter `false` makes it synchronous
+                    xhr.open('POST', url, false);
+
+                    // Set Supabase headers
+                    xhr.setRequestHeader('apikey', headers.apikey);
+                    xhr.setRequestHeader('Authorization', headers.Authorization);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.setRequestHeader('Prefer', headers.Prefer);
+
+                    xhr.send(JSON.stringify(payload));
+
+                    // For synchronous XHR, we check status after send() completes
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        console.log('[AbandonedLead] Synchronous XHR successful. Status:', xhr.status);
+                    } else {
+                        console.error('[AbandonedLead] Synchronous XHR error. Status:', xhr.status, 'Response:', xhr.responseText);
+                    }
+                } catch (error: any) {
+                    // This catch block might not be very effective for sync XHR errors during unload,
+                    // but it's here for completeness.
+                    console.error('[AbandonedLead] Synchronous XHR catch block error:', error.name, error.message, error);
+                }
+            } else {
+                console.log('[AbandonedLead] Main IF condition NOT MET. No data send attempt.');
+            }
+        };
+
+        window.addEventListener('beforeunload', sendAbandonedLeadData);
+
+        return () => {
+            // CONSOLE LOG 5: Check if cleanup function runs
+            console.log('[AbandonedLead] useEffect cleanup. Removing beforeunload listener. Calling sendAbandonedLeadData for unmount/SPA navigation.');
+            window.removeEventListener('beforeunload', sendAbandonedLeadData);
+            sendAbandonedLeadData(); // Call on unmount (covers SPA navigation)
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [getValues]); // getValues is stable from react-hook-form. Refs are managed by their own effects.
+
     // This function now only handles the first step: validating and showing date picker
     const onInitialFormSubmit = (data: IFormInput) => {
         setSubmissionError(null); // Clear previous errors
@@ -139,6 +243,7 @@ const ConsultaINSS: React.FC = () => {
 
                 // Proceed to thank you page
                 const { nome, email, telefone } = formData; // Use original formData for URL params if preferred
+                setIsNavigatingToThankYou(true); // Set flag BEFORE navigating
                 navigate(`/obrigado?name=${encodeURIComponent(nome)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(telefone)}&date=${encodeURIComponent(date.toISOString())}&time=${encodeURIComponent(time)}`);
 
             } catch (error) {
