@@ -1,0 +1,4 @@
+node_modules
+*.log
+tokens/
+legal-oasis-bot.json 
