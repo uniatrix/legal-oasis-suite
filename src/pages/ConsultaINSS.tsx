@@ -242,49 +242,9 @@ const ConsultaINSS: React.FC = () => {
                 await axios.post('https://seabraemoura.app.n8n.cloud/webhook-test/form-submission', completeFormData);
 
                 // Proceed to thank you page
-                const { nome, email, telefone, valorPensao, tempoContribuicao } = formData; // Use original formData for URL params if preferred
+                const { nome, email, telefone } = formData; // Destructure only what's needed for the URL
                 setIsNavigatingToThankYou(true); // Set flag BEFORE navigating
                 navigate(`/obrigado?name=${encodeURIComponent(nome)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(telefone)}&date=${encodeURIComponent(date.toISOString())}&time=${encodeURIComponent(time)}`);
-
-                // AFTER successful n8n submission and navigation setup, send WhatsApp message
-                // IMPORTANT: Replace 'YOUR_RENDER_WPPCONNECT_API_URL' with the actual URL of your deployed WPPConnect service on Render
-                const wppconnectApiUrl = process.env.NODE_ENV === 'development'
-                    ? 'http://localhost:3001/send-message'
-                    : 'YOUR_RENDER_WPPCONNECT_API_URL/send-message';
-
-                // Construct the message
-                // Format the date and time for the message
-                const formattedDate = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(date);
-                const messageToOneOfTheNumbers =
-                    `Nova Consulta Agendada (Legal Oasis Suite)!
--------------------------------------
-Nome: ${nome}
-Email: ${email}
-Telefone: ${telefone}
-Valor da Pensão: ${valorPensao}
-Tempo de Contribuição: ${tempoContribuicao} anos
--------------------------------------
-Data Agendada: ${formattedDate}
-Horário Agendado: ${time}
--------------------------------------
-Por favor, prepare-se para a consulta.
-`;
-
-                // Replace with the recipient phone number (e.g., your business WhatsApp number)
-                // Make sure it includes the country code but no special characters, e.g., 5511999999999 for Brazil
-                const recipientPhoneNumber = 'YOUR_BUSINESS_WHATSAPP_NUMBER'; // E.g., '5511987654321'
-
-                try {
-                    await axios.post(wppconnectApiUrl, {
-                        to: recipientPhoneNumber, // The number to send the WhatsApp message to
-                        message: messageToOneOfTheNumbers
-                    });
-                    console.log('WhatsApp notification sent successfully via WPPConnect API.');
-                } catch (wppError) {
-                    console.error('Error sending WhatsApp notification via WPPConnect API:', wppError);
-                    // Optionally, inform the user or log this more formally
-                    // For now, we just log it and don't block the user flow
-                }
 
             } catch (error) {
                 console.error('Submission error to n8n:', error);

@@ -54,12 +54,16 @@ wppconnect
   })
   .then((client) => {
     whatsappClient = client;
-    clientStatus = 'WhatsApp client initialized. Waiting for QR scan or successful connection.';
-    console.log('WPPConnect client created. Ready to send messages once logged in.');
+    // clientStatus is primarily managed by statusFind now, especially with waitForLogin: false.
+    // We can set an initial status here, but statusFind will provide the most up-to-date state.
+    if (!clientStatus || clientStatus === 'Initializing...') { // Only set if not already updated by a quick statusFind
+        clientStatus = 'WPPConnect client instance created. Status will update via events.';
+    }
+    console.log('WPPConnect client instance created. Monitor status events for login completion.');
     startApi();
   })
   .catch((error) => {
-    clientStatus = 'Error initializing WPPConnect.';
+    clientStatus = `Error initializing WPPConnect: ${error.message || error}`;
     console.error('Error creating WPPConnect client:', error);
     // Optionally, attempt to start the API anyway to serve status/QR even if client failed.
     startApi(); 
@@ -92,7 +96,7 @@ function startApi() {
     if (!whatsappClient) {
       return res.status(500).json({ success: false, message: 'WhatsApp client not initialized.' });
     }
-    if (clientStatus !== 'isLogged' && clientStatus !== 'successChat' && clientStatus !== 'chatsAvailable') {
+    if (clientStatus !== 'isLogged' && clientStatus !== 'successChat' && clientStatus !== 'chatsAvailable' && clientStatus !== 'inChat') {
       return res.status(503).json({ success: false, message: `WhatsApp client not ready. Status: ${clientStatus}` });
     }
 

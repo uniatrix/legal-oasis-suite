@@ -1,0 +1,63 @@
+{
+    "name": "Test WPPConnect Local API",
+    "nodes": [
+        {
+            "parameters": {},
+            "id": "4b455f8d-2f72-4b7e-8c61-9f29a5c40f1f",
+            "name": "Start",
+            "type": "n8n-nodes-base.start",
+            "typeVersion": 1,
+            "position": [
+                240,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "https://5796-177-12-48-63.ngrok-free.app/send-message",
+                "options": {},
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "to",
+                            "value": "5521991875887"
+                        },
+                        {
+                            "name": "message",
+                            "value": "Hello from n8n! This is a test of the local WPPConnect API via ngrok. Timestamp: {{ $now.toMillis() }}"
+                        }
+                    ]
+                },
+                "jsonParameters": true
+            },
+            "id": "a1b2c3d4-e5f6-7890-1234-abcdef123456",
+            "name": "Send WhatsApp via Local API",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.1,
+            "position": [
+                460,
+                300
+            ],
+            "credentials": {}
+        }
+    ],
+    "connections": {
+        "Start": {
+            "main": [
+                [
+                    {
+                        "node": "Send WhatsApp via Local API",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {},
+    "versionId": "f1f2f3f4-f5f6-f7f8-f9f0-f1f2f3f4f5f6",
+    "meta": {
+        "templateCredsSetupCompleted": true
+    }
+}
