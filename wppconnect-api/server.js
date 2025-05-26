@@ -48,7 +48,7 @@ wppconnect
     },
     logQR: true, // Logs QR automatically in terminal
     browserWS: '', // Optional: connect to an existing browser session
-    autoClose: 90000, // Time in ms to auto close the session (0 = no auto close)
+    autoClose: 0, // Temporarily disable autoClose for debugging
     createPathFileToken: true, // Create a token file for session persistence
     waitForLogin: true,
   })
