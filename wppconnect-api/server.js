@@ -66,13 +66,26 @@ wppconnect
   });
 
 function startApi() {
+  app.get('/healthz', (req, res) => {
+    res.status(200).send('OK');
+  });
+
   app.get('/', (req, res) => {
-    res.send(`
-      <h1>WPPConnect API Status</h1>
-      <p>Client Status: <strong>${clientStatus}</strong></p>
-      ${qrCodeDataUrl ? `<p>Scan the QR code below with your WhatsApp:</p><img src="${qrCodeDataUrl}" alt="QR Code" />` : ''}
-      <p>Refresh this page to see the latest status or QR code.</p>
-    `);
+    // Temporarily simplify for health check and basic access
+    if (qrCodeDataUrl) {
+      res.send(`
+        <h1>WPPConnect QR Code</h1>
+        <p>Client Status: <strong>${clientStatus}</strong></p>
+        <img src="${qrCodeDataUrl}" alt="QR Code" />
+        <p>Scan with WhatsApp. Refresh if status doesn't change after scan.</p>
+      `);
+    } else {
+      res.send(`
+        <h1>WPPConnect API Status</h1>
+        <p>Client Status: <strong>${clientStatus}</strong></p>
+        <p>${clientStatus === 'Initializing...' || clientStatus.includes('QR') ? 'Generating QR Code, please wait and refresh...' : 'Not currently showing QR code. Refresh to check.'}</p>
+      `);
+    }
   });
 
   app.post('/send-message', async (req, res) => {
