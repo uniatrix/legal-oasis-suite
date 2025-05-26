@@ -50,7 +50,7 @@ wppconnect
     browserWS: '', // Optional: connect to an existing browser session
     autoClose: 0, // Temporarily disable autoClose for debugging
     createPathFileToken: true, // Create a token file for session persistence
-    waitForLogin: true,
+    waitForLogin: false, // Try resolving create() promise sooner
   })
   .then((client) => {
     whatsappClient = client;
