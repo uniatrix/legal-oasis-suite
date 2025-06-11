@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { CheckCircle2, Calendar, AlertCircle, CheckIcon, PlayCircle } from 'lucide-react';
+import { CheckCircle2, Calendar, AlertCircle, CheckIcon } from 'lucide-react';
 import AOS from 'aos';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { useSearchParams } from 'react-router-dom';
@@ -118,38 +118,11 @@ const Obrigado: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Video Section */}
-                    <div
-                        className="bg-law-black-lighter/70 backdrop-blur-lg rounded-xl border border-law-blue-dark/40 shadow-2xl p-6 sm:p-8"
-                        data-aos="fade-up"
-                        data-aos-delay="300"
-                    >
-                        <div className="flex items-center gap-3 mb-4 sm:mb-5">
-                            <PlayCircle className="text-law-gold flex-shrink-0" size={32} />
-                            <h2 className="text-xl sm:text-2xl font-semibold text-law-gold">
-                                Uma Mensagem Importante Para Você
-                            </h2>
-                        </div>
-                        <p className="text-law-white-light/90 mb-5 sm:mb-6 text-sm sm:text-base leading-relaxed">
-                            Enquanto aguarda sua consulta, preparamos um vídeo especial. Descubra como nossa equipe pode ajudá-lo(a) a navegar pelas complexidades do INSS e o que esperar do nosso encontro. Clique no play e assista agora!
-                        </p>
-                        <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden bg-law-black/60 border border-law-blue-dark/50 shadow-inner">
-                            {/* Replace src with your video URL */}
-                            <iframe
-                                src="https://www.youtube.com/embed/dQw4w9WgXcQ" // Example Video - REPLACE THIS
-                                title="Mensagem de Boas-vindas Importante"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="w-full h-full"
-                            />
-                        </div>
-                    </div>
-
                     {/* Confirmation Section */}
                     <div
                         className="bg-law-black-lighter/70 backdrop-blur-lg rounded-xl border border-law-blue-dark/40 shadow-2xl p-6 sm:p-8"
                         data-aos="fade-up"
-                        data-aos-delay="450"
+                        data-aos-delay="300"
                     >
                         <div className="space-y-5">
                             <div className="flex items-start sm:items-center gap-3">
@@ -193,7 +166,7 @@ const Obrigado: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <img src={logoSrc} alt="Seabra & Moura Santos Advogados Logo" className="mx-auto h-28 w-auto mt-12 sm:mt-16 mb-8" data-aos="fade-up" data-aos-delay="700" />
+                <img src={logoSrc} alt="Seabra & Moura Santos Advogados Logo" className="mx-auto h-28 w-auto mt-12 sm:mt-16 mb-8" data-aos="fade-up" data-aos-delay="450" />
             </div>
         </>
     );

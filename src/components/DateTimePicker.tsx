@@ -156,7 +156,6 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
                                     >
                                         {isSlotBooked && <XCircle size={20} className="mr-1 flex-shrink-0" />}
                                         {time}
-                                        {isSlotBooked ? <span className="text-xs ml-1">(Indisponível)</span> : ''}
                                     </button>
                                 );
                             })}
