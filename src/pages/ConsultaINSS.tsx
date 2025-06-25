@@ -239,7 +239,7 @@ const ConsultaINSS: React.FC = () => {
 
             try {
                 // API call to n8n webhook with ALL data
-                await axios.post('https://faficheiro.app.n8n.cloud/webhook/form-submission', completeFormData);
+                await axios.post('https://cesarhseabra.app.n8n.cloud/webhook/form-submission', completeFormData);
 
                 // Proceed to thank you page
                 const { nome, email, telefone } = formData; // Destructure only what's needed for the URL
