@@ -7,7 +7,7 @@ import AOS from 'aos';
 import * as Form from '@radix-ui/react-form';
 import * as RadioGroup from '@radix-ui/react-radio-group';
 import * as Select from '@radix-ui/react-select';
-import { ChevronDownIcon, ChevronUpIcon, CheckIcon, CircleAlert, User, Mail, Phone } from 'lucide-react';
+import { ChevronDownIcon, ChevronUpIcon, CheckIcon, CircleAlert, User, Mail, Phone, FileText, SearchCheck, CircleDollarSign } from 'lucide-react';
 import MyMaskedInput from '@/components/MyMaskedInput';
 import DateTimePicker from '@/components/DateTimePicker';
 import { useNavigate } from 'react-router-dom';
@@ -298,32 +298,58 @@ const ConsultaINSS: React.FC = () => {
                 {/* End Facebook Pixel Code */}
             </Helmet>
             <div className="min-h-screen bg-gradient-to-br from-law-black via-law-black-light to-law-black text-law-white py-16 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-                <div className="max-w-2xl w-full space-y-10" data-aos="fade-up">
+                <div className="max-w-3xl w-full space-y-10" data-aos="fade-up">
                     {!showDatePicker ? (
                         <>
-                            <div className="text-center space-y-4 sm:space-y-5">
-                                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight gold-gradient-text mb-4">
-                                    Benefício INSS em Risco? <br className="sm:hidden" />Você Pode Ser Uma Vítima!
+                            <div className="text-center space-y-3">
+                                <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-law-white">
+                                    Recupere até <span className="gold-gradient-text block text-5xl sm:text-6xl md:text-7xl">R$10.000</span> Direto na Sua Conta
                                 </h1>
-                                <div className="text-left sm:text-center text-base sm:text-lg text-law-white-light/95 max-w-xl mx-auto space-y-3 pt-1 leading-relaxed">
-                                    <p>
-                                        Descontos indevidos no INSS são um pesadelo crescente: <strong className="text-law-gold">+250%</strong> em descontos, <strong className="text-law-gold">+650%</strong> em repasses suspeitos, além de <strong className="text-law-gold">R$6 BILHÕES</strong> que podem ter sido desviados (Fonte: G1). Ver seu dinheiro sumir gera angústia. <strong className="text-law-gold">Mais de 1.6 MILHÃO já pediram reembolso.</strong> Não sofra sozinho(a)!
-                                    </p>
-                                    <p className="font-semibold text-law-white text-lg sm:text-xl pt-2">
-                                        Nossa equipe luta por você. Análise <strong className="text-law-gold">urgente e gratuita</strong> do seu caso. Recupere seus direitos e sua tranquilidade. Preencha o formulário e dê o BASTA nessa <strong className="text-law-gold">injustiça AGORA!</strong>
-                                    </p>
+                                <p className="text-lg sm:text-xl text-law-white-light/95 max-w-2xl mx-auto pt-2">
+                                    Descontos não autorizados em seu benefício são ilegais. A lei garante a devolução de tudo que foi pago indevidamente nos últimos 5 anos, com juros e correção. Nossa análise gratuita revela o valor exato e inicia o processo para que você receba o que é seu por direito.
+                                </p>
+                            </div>
+
+                            {/* Steps Section */}
+                            <div className="my-10 sm:my-12" data-aos="fade-up" data-aos-delay="100">
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+                                    <div className="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="200">
+                                        <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
+                                            <FileText className="h-8 w-8 text-law-gold" />
+                                        </div>
+                                        <h3 className="font-bold text-lg text-law-white">1. Preencha o Formulário</h3>
+                                        <p className="text-sm text-law-white-light/80 mt-1">É o único passo que você precisa dar. Nós cuidamos de todo o resto para garantir seu dinheiro de volta.</p>
+                                    </div>
+                                    <div className="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="300">
+                                        <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
+                                            <SearchCheck className="h-8 w-8 text-law-gold" />
+                                        </div>
+                                        <h3 className="font-bold text-lg text-law-white">2. Análise Jurídica Gratuita</h3>
+                                        <p className="text-sm text-law-white-light/80 mt-1">Nossos advogados farão uma varredura completa, identificando cada desconto indevido. Custo zero para você.</p>
+                                    </div>
+                                    <div className="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="400">
+                                        <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
+                                            <CircleDollarSign className="h-8 w-8 text-law-gold" />
+                                        </div>
+                                        <h3 className="font-bold text-lg text-law-white">3. Receba o Que é Seu</h3>
+                                        <p className="text-sm text-law-white-light/80 mt-1">Com base na lei, acionamos os responsáveis e garantimos que o valor corrigido seja depositado na sua conta.</p>
+                                    </div>
                                 </div>
                             </div>
 
                             <Form.Root
                                 ref={formRef}
                                 onSubmit={handleSubmit(onInitialFormSubmit)} // Changed to onInitialFormSubmit
-                                className="mt-8 space-y-6 bg-law-black-lighter/80 backdrop-blur-sm p-8 sm:p-10 rounded-xl shadow-2xl border border-law-blue-dark/30"
+                                className="space-y-6 bg-law-black-lighter/80 backdrop-blur-sm p-8 sm:p-10 rounded-xl shadow-2xl border border-law-blue-dark/30"
                                 data-aos="fade-up"
-                                data-aos-delay="100"
+                                data-aos-delay="500"
                             >
+                                <div className="text-center mb-6">
+                                    <h2 className="text-2xl font-bold text-law-gold tracking-wide">Dê o Primeiro Passo Para Recuperar Seu Dinheiro</h2>
+                                    <p className="text-law-white-light/90 mt-1">Preencha seus dados para iniciarmos a sua análise gratuita e obrigatória.</p>
+                                </div>
                                 {/* Nome */}
-                                <Form.Field name="nome" className="space-y-1.5" data-aos="fade-up" data-aos-delay="200">
+                                <Form.Field name="nome" className="space-y-1.5">
                                     <Form.Label className="text-sm font-semibold text-law-white tracking-wide">Nome Completo</Form.Label>
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -354,7 +380,7 @@ const ConsultaINSS: React.FC = () => {
                                 </Form.Field>
 
                                 {/* Email */}
-                                <Form.Field name="email" className="space-y-1.5" data-aos="fade-up" data-aos-delay="300">
+                                <Form.Field name="email" className="space-y-1.5">
                                     <Form.Label className="text-sm font-semibold text-law-white tracking-wide">Email</Form.Label>
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -391,7 +417,7 @@ const ConsultaINSS: React.FC = () => {
                                 </Form.Field>
 
                                 {/* Telefone */}
-                                <Form.Field name="telefone" className="space-y-1.5" data-aos="fade-up" data-aos-delay="400">
+                                <Form.Field name="telefone" className="space-y-1.5">
                                     <Form.Label className="text-sm font-semibold text-law-white tracking-wide">Telefone (WhatsApp)</Form.Label>
                                     <div className="relative rounded-md shadow-sm">
                                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -434,7 +460,7 @@ const ConsultaINSS: React.FC = () => {
                                 </Form.Field>
 
                                 {/* Valor da Pensão */}
-                                <Form.Field name="valorPensao" className="space-y-2.5" data-aos="fade-up" data-aos-delay="500">
+                                <Form.Field name="valorPensao" className="space-y-2.5">
                                     <Form.Label className="text-sm font-semibold text-law-white tracking-wide">Valor da Pensão/Benefício</Form.Label>
                                     <Controller
                                         name="valorPensao"
@@ -478,7 +504,7 @@ const ConsultaINSS: React.FC = () => {
                                 </Form.Field>
 
                                 {/* Tempo de Contribuição */}
-                                <Form.Field name="tempoContribuicao" className="space-y-1.5" data-aos="fade-up" data-aos-delay="600">
+                                <Form.Field name="tempoContribuicao" className="space-y-1.5">
                                     <Form.Label className="text-sm font-semibold text-law-white tracking-wide">Tempo de Contribuição</Form.Label>
                                     <Controller
                                         name="tempoContribuicao"
@@ -536,7 +562,7 @@ const ConsultaINSS: React.FC = () => {
                                 </Form.Field>
 
                                 {submissionError && !showDatePicker && ( // Only show initial form submission errors here
-                                    <div className="rounded-md bg-red-900/80 backdrop-blur-sm p-4 border border-red-700" data-aos="fade-up" data-aos-delay="650">
+                                    <div className="rounded-md bg-red-900/80 backdrop-blur-sm p-4 border border-red-700">
                                         <div className="flex">
                                             <div className="flex-shrink-0">
                                                 <CircleAlert className="h-5 w-5 text-red-300" aria-hidden="true" />
@@ -550,7 +576,7 @@ const ConsultaINSS: React.FC = () => {
                                     </div>
                                 )}
 
-                                <Form.Submit asChild data-aos="fade-up" data-aos-delay="700">
+                                <Form.Submit asChild>
                                     <button
                                         type="submit"
                                         disabled={isSubmitting || !isValid || !isDirty} // Removed isSubmittingToN8N from here
@@ -564,9 +590,9 @@ const ConsultaINSS: React.FC = () => {
                                         ) : (
                                             <>
                                                 {missingFields.length > 0 ? (
-                                                    'Preencha todos os campos'
+                                                    'Preencha para continuar'
                                                 ) : (
-                                                    'Escolher Data e Horário' // Button text changed
+                                                    'AGENDAR MINHA ANÁLISE GRATUITA' // Button text changed
                                                 )}
                                             </>
                                         )}
