@@ -505,16 +505,16 @@ const ConsultaINSS: React.FC = () => {
 
                                 {/* Tempo de Contribuição */}
                                 <Form.Field name="tempoContribuicao" className="space-y-1.5">
-                                    <Form.Label className="text-sm font-semibold text-law-white tracking-wide">Tempo de Contribuição</Form.Label>
+                                    <Form.Label className="text-sm font-semibold text-law-white tracking-wide">Tempo do Benefício</Form.Label>
                                     <Controller
                                         name="tempoContribuicao"
                                         control={control}
-                                        rules={{ required: "Tempo de contribuição é obrigatório" }}
+                                        rules={{ required: "Tempo do benefício é obrigatório" }}
                                         render={({ field }) => (
                                             <Select.Root onValueChange={field.onChange} value={field.value} disabled={isSubmitting}>
                                                 <Select.Trigger
                                                     className={`${baseInputStyles} ${inputBorderStyles} inline-flex items-center justify-between pr-3 text-base disabled:opacity-50 disabled:cursor-not-allowed`}
-                                                    aria-label="Tempo de Contribuição"
+                                                    aria-label="Tempo de Benefício"
                                                     disabled={isSubmitting}
                                                 >
                                                     <Select.Value placeholder="Selecione o tempo em anos" />
