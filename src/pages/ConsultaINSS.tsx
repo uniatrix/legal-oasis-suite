@@ -317,22 +317,22 @@ const ConsultaINSS: React.FC = () => {
                                         <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
                                             <FileText className="h-8 w-8 text-law-gold" />
                                         </div>
-                                        <h3 className="font-bold text-lg text-law-white">1. Preencha o Formulário</h3>
-                                        <p className="text-sm text-law-white-light/80 mt-1">É o único passo que você precisa dar. Nós cuidamos de todo o resto para garantir seu dinheiro de volta.</p>
+                                        <h3 className="font-bold text-lg text-law-white">1. Preencha e Agende</h3>
+                                        <p className="text-sm text-law-white-light/80 mt-1">Use o formulário para marcar rapidamente uma consulta gratuita com nosso time de especialistas.</p>
                                     </div>
                                     <div className="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="300">
                                         <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
                                             <SearchCheck className="h-8 w-8 text-law-gold" />
                                         </div>
-                                        <h3 className="font-bold text-lg text-law-white">2. Análise Jurídica Gratuita</h3>
-                                        <p className="text-sm text-law-white-light/80 mt-1">Nossos advogados farão uma varredura completa, identificando cada desconto indevido. Custo zero para você.</p>
+                                        <h3 className="font-bold text-lg text-law-white">2. Análise do Caso</h3>
+                                        <p className="text-sm text-law-white-light/80 mt-1">Na reunião, nossos advogados analisarão seu extrato para identificar os descontos indevidos e calcular os valores a reaver.</p>
                                     </div>
                                     <div className="flex flex-col items-center p-4" data-aos="fade-up" data-aos-delay="400">
                                         <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
                                             <CircleDollarSign className="h-8 w-8 text-law-gold" />
                                         </div>
-                                        <h3 className="font-bold text-lg text-law-white">3. Receba o Que é Seu</h3>
-                                        <p className="text-sm text-law-white-light/80 mt-1">Com base na lei, acionamos os responsáveis e garantimos que o valor corrigido seja depositado na sua conta.</p>
+                                        <h3 className="font-bold text-lg text-law-white">3. Ação de Recuperação</h3>
+                                        <p className="text-sm text-law-white-light/80 mt-1">Com sua autorização, entramos com a ação judicial para reaver seu dinheiro, acrescido de juros e correção.</p>
                                     </div>
                                 </div>
                             </div>
