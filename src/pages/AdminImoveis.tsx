@@ -20,7 +20,7 @@ import {
   MessageCircle,
   Send,
 } from "lucide-react";
-import { sendWhatsAppMessage } from "@/lib/whatsapp-clean";
+import { sendWhatsAppMessage } from "@/lib/whatsapp";
 
 const AdminImoveis: React.FC = () => {
   const [submissions, setSubmissions] = useState<ConsultaImoveisSubmission[]>(
@@ -423,40 +423,38 @@ const AdminImoveis: React.FC = () => {
                 Exportar CSV
               </button>
 
-              {/* Botão de teste temporário */}
+              {/* Botão de teste do sistema WhatsApp */}
               <button
                 onClick={async () => {
-                  console.log("🧪 Testando Evolution API...");
+                  console.log("🧪 Testando sistema WhatsApp...");
                   try {
-                    const response = await fetch("http://localhost:8080/", {
-                      headers: {
-                        apikey: "mude-me",
-                      },
-                    });
+                    const testData = {
+                      nome: "Teste Sistema",
+                      telefone: "21999999999",
+                      horario_preferido: "14:00-16:00",
+                    };
 
-                    if (response.ok) {
-                      const data = await response.json();
-                      console.log("✅ Evolution API respondendo:", data);
+                    const result = await sendWhatsAppMessage(testData);
+
+                    if (result.success) {
                       setError(
-                        `✅ Evolution API funcionando! Versão: ${
-                          data.version || "N/A"
-                        }`
+                        `✅ Sistema funcionando! Provider: ${result.provider}`
                       );
                     } else {
-                      throw new Error(
-                        `HTTP ${response.status}: ${response.statusText}`
-                      );
+                      setError(`❌ Erro no sistema: ${result.error}`);
                     }
                   } catch (err) {
-                    console.error("❌ Evolution API não disponível:", err);
+                    console.error("❌ Erro no teste:", err);
                     setError(
-                      `❌ Evolution API não está rodando. Aguarde o Docker terminar de baixar.`
+                      `❌ Erro no teste: ${
+                        err instanceof Error ? err.message : "Erro desconhecido"
+                      }`
                     );
                   }
                 }}
-                className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors"
               >
-                🧪 Testar Sistema
+                🧪 Testar WhatsApp
               </button>
             </div>
           </div>
