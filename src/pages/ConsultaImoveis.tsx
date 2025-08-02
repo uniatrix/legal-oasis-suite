@@ -335,11 +335,11 @@ const ConsultaImoveis: React.FC = () => {
                   <FileText className="h-8 w-8 text-law-gold" />
                 </div>
                 <h3 className="font-bold text-lg text-law-white">
-                  1. Análise Gratuita
+                  1. Contato Direto
                 </h3>
                 <p className="text-sm text-law-white-light/80 mt-1">
-                  Avaliamos sua situação imobiliária e identificamos as melhores
-                  estratégias de gestão e proteção jurídica.
+                  Entramos em contato via WhatsApp no horário de sua preferência
+                  para uma conversa inicial sobre sua situação imobiliária.
                 </p>
               </div>
               <div
@@ -351,11 +351,11 @@ const ConsultaImoveis: React.FC = () => {
                   <SearchCheck className="h-8 w-8 text-law-gold" />
                 </div>
                 <h3 className="font-bold text-lg text-law-white">
-                  2. Gestão Completa
+                  2. Análise Gratuita
                 </h3>
                 <p className="text-sm text-law-white-light/80 mt-1">
-                  Administramos contratos, cobranças, manutenções e questões
-                  legais, garantindo tranquilidade total.
+                  Durante o contato, avaliamos sua situação e identificamos as
+                  melhores estratégias de gestão e proteção jurídica.
                 </p>
               </div>
               <div
@@ -367,11 +367,11 @@ const ConsultaImoveis: React.FC = () => {
                   <Building2 className="h-8 w-8 text-law-gold" />
                 </div>
                 <h3 className="font-bold text-lg text-law-white">
-                  3. Proteção Jurídica
+                  3. Solução Personalizada
                 </h3>
                 <p className="text-sm text-law-white-light/80 mt-1">
-                  Assessoria jurídica preventiva e representação em questões
-                  contratuais, condominiais e imobiliárias.
+                  Oferecemos gestão completa, assessoria jurídica preventiva e
+                  representação conforme suas necessidades específicas.
                 </p>
               </div>
             </div>
@@ -390,7 +390,8 @@ const ConsultaImoveis: React.FC = () => {
               </h2>
               <p className="text-law-white-light/90 mt-1">
                 Preencha seus dados e nossos advogados entrarão em contato via
-                WhatsApp no horário de sua preferência.
+                WhatsApp no horário e dia de sua preferência. Não há reunião
+                marcada, apenas um contato direto para esclarecer suas dúvidas.
               </p>
             </div>
             {/* Nome */}
@@ -632,7 +633,7 @@ const ConsultaImoveis: React.FC = () => {
             {/* Horário Preferido */}
             <Form.Field name="horarioPreferido" className="space-y-1.5">
               <Form.Label className="text-sm font-medium text-law-white">
-                Horário Preferido para Contato (WhatsApp)
+                Horário e Dia Preferido para Contato (WhatsApp)
               </Form.Label>
               <Controller
                 name="horarioPreferido"
@@ -646,7 +647,7 @@ const ConsultaImoveis: React.FC = () => {
                     <Select.Trigger
                       className={`${baseInputStyles} ${inputBorderStyles} flex items-center justify-between`}
                     >
-                      <Select.Value placeholder="Selecione o melhor horário para contato" />
+                      <Select.Value placeholder="Selecione o melhor horário e dia para contato" />
                       <Select.Icon>
                         <ChevronDownIcon className="h-4 w-4" />
                       </Select.Icon>
@@ -658,37 +659,56 @@ const ConsultaImoveis: React.FC = () => {
                         </Select.ScrollUpButton>
                         <Select.Viewport className="p-1">
                           <Select.Item
-                            value="10:00-12:00"
+                            value="manha-semana"
                             className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
                           >
-                            <Select.ItemText>10:00 às 12:00</Select.ItemText>
+                            <Select.ItemText>
+                              Manhã (9h-12h) - Dias úteis
+                            </Select.ItemText>
                             <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
                               <CheckIcon className="h-4 w-4" />
                             </Select.ItemIndicator>
                           </Select.Item>
                           <Select.Item
-                            value="12:00-14:00"
+                            value="tarde-semana"
                             className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
                           >
-                            <Select.ItemText>12:00 às 14:00</Select.ItemText>
+                            <Select.ItemText>
+                              Tarde (14h-17h) - Dias úteis
+                            </Select.ItemText>
                             <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
                               <CheckIcon className="h-4 w-4" />
                             </Select.ItemIndicator>
                           </Select.Item>
                           <Select.Item
-                            value="14:00-16:00"
+                            value="noite-semana"
                             className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
                           >
-                            <Select.ItemText>14:00 às 16:00</Select.ItemText>
+                            <Select.ItemText>
+                              Noite (18h-20h) - Dias úteis
+                            </Select.ItemText>
                             <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
                               <CheckIcon className="h-4 w-4" />
                             </Select.ItemIndicator>
                           </Select.Item>
                           <Select.Item
-                            value="16:00-18:00"
+                            value="sabado-manha"
                             className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
                           >
-                            <Select.ItemText>16:00 às 18:00</Select.ItemText>
+                            <Select.ItemText>
+                              Sábado pela manhã (9h-12h)
+                            </Select.ItemText>
+                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
+                              <CheckIcon className="h-4 w-4" />
+                            </Select.ItemIndicator>
+                          </Select.Item>
+                          <Select.Item
+                            value="qualquer-horario"
+                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
+                          >
+                            <Select.ItemText>
+                              Qualquer horário comercial
+                            </Select.ItemText>
                             <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
                               <CheckIcon className="h-4 w-4" />
                             </Select.ItemIndicator>
@@ -761,7 +781,7 @@ const ConsultaImoveis: React.FC = () => {
               >
                 {isSubmitting
                   ? "Enviando..."
-                  : "Solicitar Contato dos Advogados"}
+                  : "Solicitar Contato Direto via WhatsApp"}
               </button>
             </Form.Submit>
           </Form.Root>
