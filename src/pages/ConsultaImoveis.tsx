@@ -338,7 +338,7 @@ const ConsultaImoveis: React.FC = () => {
                   1. Contato Direto
                 </h3>
                 <p className="text-sm text-law-white-light/80 mt-1">
-                  Entramos em contato via WhatsApp no horário de sua preferência
+                  Entramos em contato por telefone no horário de sua preferência
                   para uma conversa inicial sobre sua situação imobiliária.
                 </p>
               </div>
@@ -389,8 +389,8 @@ const ConsultaImoveis: React.FC = () => {
                 Solicite sua Consultoria Gratuita
               </h2>
               <p className="text-law-white-light/90 mt-1">
-                Preencha seus dados e nossos advogados entrarão em contato via
-                WhatsApp no horário e dia de sua preferência. Não há reunião
+                Preencha seus dados e nossos advogados entrarão em contato por
+                telefone no horário e dia de sua preferência. Não há reunião
                 marcada, apenas um contato direto para esclarecer suas dúvidas.
               </p>
             </div>
@@ -633,7 +633,7 @@ const ConsultaImoveis: React.FC = () => {
             {/* Horário Preferido */}
             <Form.Field name="horarioPreferido" className="space-y-1.5">
               <Form.Label className="text-sm font-medium text-law-white">
-                Horário e Dia Preferido para Contato (WhatsApp)
+                Horário e Dia Preferido para Contato
               </Form.Label>
               <Controller
                 name="horarioPreferido"
@@ -781,7 +781,7 @@ const ConsultaImoveis: React.FC = () => {
               >
                 {isSubmitting
                   ? "Enviando..."
-                  : "Solicitar Contato Direto via WhatsApp"}
+                  : "Solicitar Contato dos Advogados"}
               </button>
             </Form.Submit>
           </Form.Root>

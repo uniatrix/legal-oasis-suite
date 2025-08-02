@@ -17,10 +17,7 @@ import {
   Archive,
   Trash2,
   AlertTriangle,
-  MessageCircle,
-  Send,
 } from "lucide-react";
-import { sendWhatsAppMessage } from "@/lib/whatsapp";
 
 const AdminImoveis: React.FC = () => {
   const [submissions, setSubmissions] = useState<ConsultaImoveisSubmission[]>(
@@ -34,7 +31,6 @@ const AdminImoveis: React.FC = () => {
   >([]);
   const [showDeleteModal, setShowDeleteModal] = useState<number | null>(null);
   const [showArchiveModal, setShowArchiveModal] = useState<number | null>(null);
-  const [sendingWhatsApp, setSendingWhatsApp] = useState<number | null>(null);
 
   const fetchSubmissions = async () => {
     try {
@@ -154,61 +150,6 @@ const AdminImoveis: React.FC = () => {
     } catch (err) {
       console.error("❌ Erro completo:", err);
       setError(err instanceof Error ? err.message : "Erro ao excluir registro");
-    }
-  };
-
-  const handleSendWhatsApp = async (submission: ConsultaImoveisSubmission) => {
-    if (!submission.id) return;
-
-    try {
-      setSendingWhatsApp(submission.id);
-      setError(null);
-
-      console.log(
-        "📱 Enviando WhatsApp para:",
-        submission.nome,
-        submission.telefone
-      );
-
-      const result = await sendWhatsAppMessage({
-        nome: submission.nome,
-        telefone: submission.telefone,
-        horario_preferido: submission.horario_preferido,
-      });
-
-      if (result.success) {
-        console.log(`✅ WhatsApp enviado via ${result.provider}`);
-
-        // Opcional: Marcar no banco que a mensagem foi enviada
-        try {
-          await supabase
-            .from("consulta_imoveis_submissions")
-            .update({
-              whatsapp_enviado: true,
-              whatsapp_enviado_em: new Date().toISOString(),
-              whatsapp_provider: result.provider,
-            })
-            .eq("id", submission.id);
-        } catch (updateError) {
-          console.warn(
-            "⚠️ Não foi possível atualizar status no banco:",
-            updateError
-          );
-        }
-
-        // Mostrar sucesso temporariamente
-        setError(
-          `✅ WhatsApp enviado com sucesso para ${submission.nome} via ${result.provider}!`
-        );
-        setTimeout(() => setError(null), 5000);
-      } else {
-        throw new Error(result.error || "Falha ao enviar WhatsApp");
-      }
-    } catch (err) {
-      console.error("❌ Erro ao enviar WhatsApp:", err);
-      setError(err instanceof Error ? err.message : "Erro ao enviar WhatsApp");
-    } finally {
-      setSendingWhatsApp(null);
     }
   };
 
@@ -422,40 +363,6 @@ const AdminImoveis: React.FC = () => {
                 <Download className="h-4 w-4" />
                 Exportar CSV
               </button>
-
-              {/* Botão de teste do sistema WhatsApp */}
-              <button
-                onClick={async () => {
-                  console.log("🧪 Testando sistema WhatsApp...");
-                  try {
-                    const testData = {
-                      nome: "Teste Sistema",
-                      telefone: "21999999999",
-                      horario_preferido: "14:00-16:00",
-                    };
-
-                    const result = await sendWhatsAppMessage(testData);
-
-                    if (result.success) {
-                      setError(
-                        `✅ Sistema funcionando! Provider: ${result.provider}`
-                      );
-                    } else {
-                      setError(`❌ Erro no sistema: ${result.error}`);
-                    }
-                  } catch (err) {
-                    console.error("❌ Erro no teste:", err);
-                    setError(
-                      `❌ Erro no teste: ${
-                        err instanceof Error ? err.message : "Erro desconhecido"
-                      }`
-                    );
-                  }
-                }}
-                className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors"
-              >
-                🧪 Testar WhatsApp
-              </button>
             </div>
           </div>
 
@@ -552,18 +459,6 @@ const AdminImoveis: React.FC = () => {
                             </span>
                           )}
                           <div className="flex gap-2">
-                            <button
-                              onClick={() => handleSendWhatsApp(submission)}
-                              disabled={sendingWhatsApp === submission.id}
-                              className="p-2 text-green-400/70 hover:text-green-400 hover:bg-green-500/10 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                              title="Enviar WhatsApp"
-                            >
-                              {sendingWhatsApp === submission.id ? (
-                                <RefreshCw className="h-4 w-4 animate-spin" />
-                              ) : (
-                                <MessageCircle className="h-4 w-4" />
-                              )}
-                            </button>
                             <button
                               onClick={() =>
                                 setShowArchiveModal(submission.id!)

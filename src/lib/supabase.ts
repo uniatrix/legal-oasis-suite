@@ -18,7 +18,4 @@ export interface ConsultaImoveisSubmission {
   descricao_problema: string
   arquivado?: boolean
   arquivado_em?: string
-  whatsapp_enviado?: boolean
-  whatsapp_enviado_em?: string
-  whatsapp_provider?: string
 }

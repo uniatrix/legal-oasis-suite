@@ -38,7 +38,7 @@ const Obrigado: React.FC = () => {
         <title>Solicitação Recebida | Seabra & Moura Santos Advogados</title>
         <meta
           name="description"
-          content="Sua solicitação foi recebida. Entraremos em contato via WhatsApp no horário de sua preferência."
+          content="Sua solicitação foi recebida. Entraremos em contato por telefone no horário de sua preferência."
         />
         {/* Facebook Pixel Code */}
         <script>
@@ -77,7 +77,7 @@ const Obrigado: React.FC = () => {
             </h1>
             <p className="text-lg sm:text-xl text-law-white-light max-w-xl mx-auto mt-2">
               {name && `Olá, ${name.split(" ")[0]}! `}
-              Recebemos sua solicitação e entraremos em contato via WhatsApp no
+              Recebemos sua solicitação e entraremos em contato por telefone no
               horário de sua preferência.
             </p>
           </div>
@@ -91,9 +91,9 @@ const Obrigado: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 text-lg mb-6">
               <Calendar className="text-law-gold flex-shrink-0" size={32} />
               <span className="leading-relaxed">
-                Nossos advogados entrarão em contato via{" "}
+                Nossos advogados entrarão em contato por{" "}
                 <strong className="text-law-gold font-semibold">
-                  WhatsApp
+                  telefone
                 </strong>{" "}
                 no horário de sua preferência para uma{" "}
                 <strong className="text-law-gold font-semibold">
@@ -115,7 +115,7 @@ const Obrigado: React.FC = () => {
                 </h3>
                 <ul className="space-y-1.5 text-law-white-light/90 text-sm sm:text-base list-disc list-inside pl-1">
                   <li>
-                    Mantenha seu WhatsApp disponível no horário informado.
+                    Mantenha seu telefone disponível no horário informado.
                   </li>
                   <li>
                     Tenha em mãos os documentos relevantes para sua situação
@@ -152,8 +152,8 @@ const Obrigado: React.FC = () => {
                   htmlFor="confirm-attendance"
                   className="text-base sm:text-lg text-law-white-light cursor-pointer leading-tight"
                 >
-                  Confirmo que li as informações e aguardo o contato via
-                  WhatsApp.
+                  Confirmo que li as informações e aguardo o contato por
+                  telefone.
                 </label>
               </div>
 
