@@ -274,12 +274,12 @@ const ConsultaImoveis: React.FC = () => {
     <>
       <Helmet>
         <title>
-          Administração de Imóveis e Assessoria Jurídica | Seabra & Moura Santos
-          Advogados
+          Aumente sua Renda em 30% ou Mais | Gestão Profissional de Imóveis |
+          Seabra & Moura Santos
         </title>
         <meta
           name="description"
-          content="Precisa de administração profissional para seu imóvel ou assessoria jurídica preventiva? Agende uma consulta gratuita com nossos especialistas em Direito Imobiliário."
+          content="CONSULTA GRATUITA: Descubra como eliminar inadimplência e aumentar sua renda em 30% ou mais com gestão profissional. Garantia de resultados em 90 dias!"
         />
         {/* Facebook Pixel Code */}
         <script>
@@ -305,76 +305,12 @@ const ConsultaImoveis: React.FC = () => {
         <div className="max-w-3xl w-full space-y-10" data-aos="fade-up">
           <div className="text-center space-y-3">
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-law-white">
-              Administração{" "}
+              Aumente sua Renda em{" "}
               <span className="gold-gradient-text block text-5xl sm:text-6xl md:text-7xl">
-                Profissional
+                30% ou Mais
               </span>{" "}
-              de Imóveis
+              com Gestão Profissional
             </h1>
-            <p className="text-lg sm:text-xl text-law-white-light/95 max-w-2xl mx-auto pt-2">
-              Gestão completa e eficaz de imóveis alugados com assessoria
-              jurídica inclusa. Proteja seu patrimônio com nossa experiência em
-              Direito Imobiliário, contratos de locação, defesa de condomínios e
-              consultoria preventiva.
-            </p>
-          </div>
-
-          {/* Steps Section */}
-          <div
-            className="my-10 sm:my-12"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-              <div
-                className="flex flex-col items-center p-4"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
-                  <FileText className="h-8 w-8 text-law-gold" />
-                </div>
-                <h3 className="font-bold text-lg text-law-white">
-                  1. Contato Direto
-                </h3>
-                <p className="text-sm text-law-white-light/80 mt-1">
-                  Entramos em contato por telefone no horário de sua preferência
-                  para uma conversa inicial sobre sua situação imobiliária.
-                </p>
-              </div>
-              <div
-                className="flex flex-col items-center p-4"
-                data-aos="fade-up"
-                data-aos-delay="300"
-              >
-                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
-                  <SearchCheck className="h-8 w-8 text-law-gold" />
-                </div>
-                <h3 className="font-bold text-lg text-law-white">
-                  2. Análise Gratuita
-                </h3>
-                <p className="text-sm text-law-white-light/80 mt-1">
-                  Durante o contato, avaliamos sua situação e identificamos as
-                  melhores estratégias de gestão e proteção jurídica.
-                </p>
-              </div>
-              <div
-                className="flex flex-col items-center p-4"
-                data-aos="fade-up"
-                data-aos-delay="400"
-              >
-                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
-                  <Building2 className="h-8 w-8 text-law-gold" />
-                </div>
-                <h3 className="font-bold text-lg text-law-white">
-                  3. Solução Personalizada
-                </h3>
-                <p className="text-sm text-law-white-light/80 mt-1">
-                  Oferecemos gestão completa, assessoria jurídica preventiva e
-                  representação conforme suas necessidades específicas.
-                </p>
-              </div>
-            </div>
           </div>
 
           <Form.Root
@@ -785,6 +721,72 @@ const ConsultaImoveis: React.FC = () => {
               </button>
             </Form.Submit>
           </Form.Root>
+
+          {/* Steps Section - Moved after form */}
+          <div
+            className="my-10 sm:my-12"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-law-white mb-2">
+                Como Funciona Nosso Atendimento
+              </h2>
+              <p className="text-law-white-light/90">
+                Processo simples e direto para cuidar do seu imóvel
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+              <div
+                className="flex flex-col items-center p-4"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
+                  <FileText className="h-8 w-8 text-law-gold" />
+                </div>
+                <h3 className="font-bold text-lg text-law-white">
+                  1. Contato Direto
+                </h3>
+                <p className="text-sm text-law-white-light/80 mt-1">
+                  Entramos em contato por telefone no horário de sua preferência
+                  para uma conversa inicial sobre sua situação imobiliária.
+                </p>
+              </div>
+              <div
+                className="flex flex-col items-center p-4"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
+                  <SearchCheck className="h-8 w-8 text-law-gold" />
+                </div>
+                <h3 className="font-bold text-lg text-law-white">
+                  2. Análise Gratuita
+                </h3>
+                <p className="text-sm text-law-white-light/80 mt-1">
+                  Durante o contato, avaliamos sua situação e identificamos as
+                  melhores estratégias de gestão e proteção jurídica.
+                </p>
+              </div>
+              <div
+                className="flex flex-col items-center p-4"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
+                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
+                  <Building2 className="h-8 w-8 text-law-gold" />
+                </div>
+                <h3 className="font-bold text-lg text-law-white">
+                  3. Solução Personalizada
+                </h3>
+                <p className="text-sm text-law-white-light/80 mt-1">
+                  Oferecemos gestão completa, assessoria jurídica preventiva e
+                  representação conforme suas necessidades específicas.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
