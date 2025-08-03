@@ -23,6 +23,13 @@ import MyMaskedInput from "@/components/MyMaskedInput";
 import { useNavigate } from "react-router-dom";
 import logoSrc from "@/assets/logo.png"; // Import the logo
 
+// TypeScript declaration for Facebook Pixel
+declare global {
+  interface Window {
+    fbq: (action: string, event: string, parameters?: any) => void;
+  }
+}
+
 interface IFormInput {
   nome: string;
   email: string;
@@ -247,6 +254,17 @@ const ConsultaImoveis: React.FC = () => {
 
       console.log("✅ Dados salvos com sucesso:", insertedData);
 
+      // Track Facebook Pixel Lead event
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq("track", "Lead", {
+          content_name: "Consulta Imóveis",
+          content_category: "Administração de Imóveis",
+          value: 0,
+          currency: "BRL",
+        });
+        console.log("📊 Facebook Pixel Lead event tracked");
+      }
+
       // Proceed to thank you page
       const { nome, email, telefone } = data;
       setIsNavigatingToThankYou(true);
@@ -309,7 +327,7 @@ const ConsultaImoveis: React.FC = () => {
               <span className="gold-gradient-text block text-5xl sm:text-6xl md:text-7xl">
                 30% ou Mais
               </span>{" "}
-              com Gestão Profissional
+              com a nossa Gestão Profissional de Imóveis.
             </h1>
           </div>
 
