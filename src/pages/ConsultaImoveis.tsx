@@ -3,25 +3,21 @@ import { useForm, Controller } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { supabase } from "@/lib/supabase";
 import AOS from "aos";
-// import 'aos/dist/aos.css'; // Temporarily commented out to check for style conflicts
 import * as Form from "@radix-ui/react-form";
-import * as RadioGroup from "@radix-ui/react-radio-group";
-import * as Select from "@radix-ui/react-select";
 import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  CheckIcon,
   CircleAlert,
   User,
   Mail,
   Phone,
-  FileText,
+  Shield,
+  Award,
+  Users,
+  MessageCircle,
   SearchCheck,
   Building2,
 } from "lucide-react";
 import MyMaskedInput from "@/components/MyMaskedInput";
 import { useNavigate } from "react-router-dom";
-import logoSrc from "@/assets/logo.png"; // Import the logo
 
 // TypeScript declaration for Facebook Pixel
 declare global {
@@ -34,27 +30,20 @@ interface IFormInput {
   nome: string;
   email: string;
   telefone: string;
-  tipoImovel: string;
-  horarioPreferido: string;
-  descricaoProblema: string;
 }
 
 const ConsultaImoveis: React.FC = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid, isDirty },
+    formState: { errors, isSubmitting, isDirty },
     watch,
-    reset,
     getValues,
   } = useForm<IFormInput>({
     defaultValues: {
       nome: "",
       email: "",
       telefone: "",
-      tipoImovel: "",
-      horarioPreferido: "",
-      descricaoProblema: "",
     },
     mode: "onChange",
   });
@@ -77,20 +66,9 @@ const ConsultaImoveis: React.FC = () => {
     const currentValues = getValues();
     if (!currentValues.nome) missing.push("Nome");
     if (!currentValues.email) missing.push("Email");
-    if (!currentValues.telefone) missing.push("Telefone");
-    if (!currentValues.tipoImovel) missing.push("Tipo de Imóvel");
-    if (!currentValues.horarioPreferido) missing.push("Horário Preferido");
-    if (!currentValues.descricaoProblema) missing.push("Principal Necessidade");
+    if (!currentValues.telefone) missing.push("WhatsApp");
     setMissingFields(missing);
-  }, [
-    getValues,
-    watch("nome"),
-    watch("email"),
-    watch("telefone"),
-    watch("tipoImovel"),
-    watch("horarioPreferido"),
-    watch("descricaoProblema"),
-  ]);
+  }, [getValues, watch("nome"), watch("email"), watch("telefone")]);
 
   useEffect(() => {
     AOS.init({
@@ -102,18 +80,16 @@ const ConsultaImoveis: React.FC = () => {
 
   // Effect to handle abandoned leads
   useEffect(() => {
-    // CONSOLE LOG 4: Check if useEffect itself runs and listeners are attached
     console.log(
       "[AbandonedLead] useEffect for abandoned leads RUNNING. Attaching listeners."
     );
 
     const sendAbandonedLeadData = async () => {
-      const formValues = getValues(); // Get current values at the moment of execution
+      const formValues = getValues();
       const isAnyFieldFilled = Object.values(formValues).some(
         (value) => value && typeof value === "string" && value.trim() !== ""
       );
 
-      // CONSOLE LOG 1 & 2: Check if function is entered and basic conditions
       console.log(
         "[AbandonedLead] sendAbandonedLeadData entered. isAnyFieldFilled:",
         isAnyFieldFilled
@@ -137,39 +113,27 @@ const ConsultaImoveis: React.FC = () => {
           nome: formValues.nome || null,
           email: formValues.email || null,
           telefone: formValues.telefone || null,
-          tipoimovel: formValues.tipoImovel || null,
-          horariopreferido: formValues.horarioPreferido || null,
-          descricaoproblema: formValues.descricaoProblema || null,
         };
 
-        const blob = new Blob([JSON.stringify(payload)], {
-          type: "application/json",
-        });
-        const url =
-          "https://nrzftrxvlmtdlgyjyypz.supabase.co/rest/v1/abandoned_leads_imoveis";
-        const headers = {
-          apikey:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yemZ0cnh2bG10ZGxneWp5eXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwODExNTUsImV4cCI6MjA2MzY1NzE1NX0.e25wq1v-w438dAFe7Zjwu5HRz4xW3sL8MftnZEvnfgI",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yemZ0cnh2bG10ZGxneWp5eXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwODExNTUsImV4cCI6MjA2MzY1NzE1NX0.e25wq1v-w438dAFe7Zjwu5HRz4xW3sL8MftnZEvnfgI",
-          Prefer: "return=minimal",
-        };
-
-        // Using synchronous XMLHttpRequest as a last resort for page unload
         try {
           const xhr = new XMLHttpRequest();
-          // The third parameter `false` makes it synchronous
-          xhr.open("POST", url, false);
-
-          // Set Supabase headers
-          xhr.setRequestHeader("apikey", headers.apikey);
-          xhr.setRequestHeader("Authorization", headers.Authorization);
+          xhr.open(
+            "POST",
+            "https://nrzftrxvlmtdlgyjyypz.supabase.co/rest/v1/abandoned_leads_imoveis",
+            false
+          );
+          xhr.setRequestHeader(
+            "apikey",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yemZ0cnh2bG10ZGxneWp5eXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwODExNTUsImV4cCI6MjA2MzY1NzE1NX0.e25wq1v-w438dAFe7Zjwu5HRz4xW3sL8MftnZEvnfgI"
+          );
+          xhr.setRequestHeader(
+            "Authorization",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5yemZ0cnh2bG10ZGxneWp5eXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgwODExNTUsImV4cCI6MjA2MzY1NzE1NX0.e25wq1v-w438dAFe7Zjwu5HRz4xW3sL8MftnZEvnfgI"
+          );
           xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.setRequestHeader("Prefer", headers.Prefer);
-
+          xhr.setRequestHeader("Prefer", "return=minimal");
           xhr.send(JSON.stringify(payload));
 
-          // For synchronous XHR, we check status after send() completes
           if (xhr.status >= 200 && xhr.status < 300) {
             console.log(
               "[AbandonedLead] Synchronous XHR successful. Status:",
@@ -184,8 +148,6 @@ const ConsultaImoveis: React.FC = () => {
             );
           }
         } catch (error: any) {
-          // This catch block might not be very effective for sync XHR errors during unload,
-          // but it's here for completeness.
           console.error(
             "[AbandonedLead] Synchronous XHR catch block error:",
             error.name,
@@ -203,15 +165,13 @@ const ConsultaImoveis: React.FC = () => {
     window.addEventListener("beforeunload", sendAbandonedLeadData);
 
     return () => {
-      // CONSOLE LOG 5: Check if cleanup function runs
       console.log(
         "[AbandonedLead] useEffect cleanup. Removing beforeunload listener. Calling sendAbandonedLeadData for unmount/SPA navigation."
       );
       window.removeEventListener("beforeunload", sendAbandonedLeadData);
-      sendAbandonedLeadData(); // Call on unmount (covers SPA navigation)
+      sendAbandonedLeadData();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getValues]); // getValues is stable from react-hook-form. Refs are managed by their own effects.
+  }, [getValues]);
 
   const onFormSubmit = async (data: IFormInput) => {
     setSubmissionError(null);
@@ -234,9 +194,6 @@ const ConsultaImoveis: React.FC = () => {
             nome: data.nome,
             email: data.email,
             telefone: data.telefone,
-            tipo_imovel: data.tipoImovel,
-            horario_preferido: data.horarioPreferido,
-            descricao_problema: data.descricaoProblema,
           },
         ])
         .select();
@@ -248,15 +205,26 @@ const ConsultaImoveis: React.FC = () => {
 
       console.log("✅ Dados salvos com sucesso:", insertedData);
 
-      // Track Facebook Pixel Lead event
+      // Track Facebook Pixel Lead event - OTIMIZAÇÃO DE CONVERSÃO
       if (typeof window !== "undefined" && window.fbq) {
         window.fbq("track", "Lead", {
-          content_name: "Consulta Imóveis",
+          content_name: "Consulta Imóveis - Análise Gratuita",
           content_category: "Administração de Imóveis",
           value: 0,
           currency: "BRL",
         });
-        console.log("📊 Facebook Pixel Lead event tracked");
+        console.log(
+          "📊 Facebook Pixel Lead event tracked with conversion optimizations"
+        );
+
+        // Verificar se PageView também foi disparado
+        console.log(
+          "✅ Facebook Pixel configurado corretamente - PageView + Lead events"
+        );
+      } else {
+        console.warn(
+          "⚠️ Facebook Pixel não encontrado - verifique se está carregado corretamente"
+        );
       }
 
       // Proceed to thank you page
@@ -278,20 +246,20 @@ const ConsultaImoveis: React.FC = () => {
   };
 
   const baseInputStyles =
-    "appearance-none block w-full px-4 py-3.5 border rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-law-gold focus:border-law-gold sm:text-sm bg-law-black text-law-white transition-all duration-300 ease-in-out";
+    "appearance-none block w-full px-4 py-4 sm:px-5 sm:py-5 border rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-law-gold focus:border-law-gold text-base bg-law-black text-law-white transition-all duration-300 ease-in-out hover:border-law-gold/50";
   const inputBorderStyles = "border-law-blue-dark hover:border-law-gold/70";
-  const inputWithIconPadding = "pl-12";
+  const inputWithIconPadding = "pl-16 sm:pl-18 md:pl-20 lg:pl-20 pr-4";
 
   return (
     <>
       <Helmet>
         <title>
-          Aumente sua Renda em 30% ou Mais | Gestão Profissional de Imóveis |
-          Seabra & Moura Santos
+          Administração de Imóveis com Segurança Jurídica | Seabra & Moura
+          Santos Advogados
         </title>
         <meta
           name="description"
-          content="CONSULTA GRATUITA: Descubra como eliminar inadimplência e aumentar sua renda em 30% ou mais com gestão profissional. Garantia de resultados em 90 dias!"
+          content="Sofrendo com inquilinos inadimplentes ou contratos mal feitos? Conte com advogados especialistas para administrar seu imóvel com segurança jurídica. Análise gratuita!"
         />
         {/* Facebook Pixel Code */}
         <script>
@@ -313,538 +281,272 @@ const ConsultaImoveis: React.FC = () => {
         </noscript>
         {/* End Facebook Pixel Code */}
       </Helmet>
-      <div className="min-h-screen bg-gradient-to-br from-law-black via-law-black-light to-law-black text-law-white py-16 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-        <div className="max-w-3xl w-full space-y-10" data-aos="fade-up">
-          <div className="text-center space-y-3">
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-law-white">
-              Aumente sua Renda em{" "}
-              <span className="gold-gradient-text block text-5xl sm:text-6xl md:text-7xl">
-                30% ou Mais
+
+      <div className="min-h-screen bg-gradient-to-br from-law-black via-law-black-light to-law-black text-law-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Hero Section */}
+          <div className="text-center mb-12" data-aos="fade-up">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-law-white mb-6 leading-tight">
+              Sofrendo com inquilinos inadimplentes, contratos mal feitos ou{" "}
+              <span className="gold-gradient-text animate-pulse">
+                falta de tempo
               </span>{" "}
-              com a nossa Gestão Profissional de Imóveis.
+              para administrar seu imóvel?
             </h1>
+            <p className="text-lg sm:text-xl text-law-white-light/95 max-w-3xl mx-auto leading-relaxed">
+              Conte com uma equipe de advogados especialistas para administrar
+              seu imóvel com
+              <span className="text-law-gold font-bold bg-law-gold/10 px-2 py-1 rounded-md shadow-sm">
+                {" "}
+                segurança jurídica
+              </span>{" "}
+              e evitar prejuízos.
+            </p>
           </div>
 
-          <Form.Root
-            ref={formRef}
-            onSubmit={handleSubmit(onFormSubmit)}
-            className="space-y-6 bg-law-black-lighter/80 backdrop-blur-sm p-8 sm:p-10 rounded-xl shadow-2xl border border-law-blue-dark/30"
+          {/* Form Section */}
+          <div
+            className="max-w-lg mx-auto mb-16"
             data-aos="fade-up"
-            data-aos-delay="500"
+            data-aos-delay="200"
           >
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-law-gold tracking-wide">
-                Solicite sua Consultoria Gratuita
-              </h2>
-              <p className="text-law-white-light/90 mt-1">
-                Preencha seus dados e nossos advogados entrarão em contato por
-                telefone no horário e dia de sua preferência. Não há reunião
-                marcada, apenas um contato direto para esclarecer suas dúvidas.
-              </p>
-            </div>
-            {/* Nome */}
-            <Form.Field name="nome" className="space-y-1.5">
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-law-gold/70" />
-                <Controller
-                  name="nome"
-                  control={control}
-                  rules={{ required: "Nome é obrigatório" }}
-                  render={({ field }) => (
-                    <input
-                      {...field}
-                      type="text"
-                      placeholder="Seu nome completo"
-                      className={`${baseInputStyles} ${inputBorderStyles} ${inputWithIconPadding}`}
-                    />
-                  )}
-                />
-              </div>
-              {errors.nome && (
-                <Form.Message className="text-red-400 text-sm flex items-center gap-1">
-                  <CircleAlert className="h-4 w-4" />
-                  {errors.nome.message}
-                </Form.Message>
-              )}
-            </Form.Field>
-
-            {/* Email */}
-            <Form.Field name="email" className="space-y-1.5">
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-law-gold/70" />
-                <Controller
-                  name="email"
-                  control={control}
-                  rules={{
-                    required: "Email é obrigatório",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Email inválido",
-                    },
-                  }}
-                  render={({ field }) => (
-                    <input
-                      {...field}
-                      type="email"
-                      placeholder="seu@email.com"
-                      className={`${baseInputStyles} ${inputBorderStyles} ${inputWithIconPadding}`}
-                    />
-                  )}
-                />
-              </div>
-              {errors.email && (
-                <Form.Message className="text-red-400 text-sm flex items-center gap-1">
-                  <CircleAlert className="h-4 w-4" />
-                  {errors.email.message}
-                </Form.Message>
-              )}
-            </Form.Field>
-
-            {/* Telefone */}
-            <Form.Field name="telefone" className="space-y-1.5">
-              <div className="relative">
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-law-gold/70" />
-                <Controller
-                  name="telefone"
-                  control={control}
-                  rules={{ required: "Telefone é obrigatório" }}
-                  render={({ field }) => (
-                    <MyMaskedInput
-                      {...field}
-                      mask="(99) 99999-9999"
-                      placeholder="(11) 99999-9999"
-                      className={`${baseInputStyles} ${inputBorderStyles} ${inputWithIconPadding}`}
-                    />
-                  )}
-                />
-              </div>
-              {errors.telefone && (
-                <Form.Message className="text-red-400 text-sm flex items-center gap-1">
-                  <CircleAlert className="h-4 w-4" />
-                  {errors.telefone.message}
-                </Form.Message>
-              )}
-            </Form.Field>
-
-            {/* Tipo de Imóvel */}
-            <Form.Field name="tipoImovel" className="space-y-1.5">
-              <Form.Label className="text-sm font-medium text-law-white">
-                Tipo de Imóvel
-              </Form.Label>
-              <Controller
-                name="tipoImovel"
-                control={control}
-                rules={{ required: "Selecione o tipo de imóvel" }}
-                render={({ field }) => (
-                  <Select.Root
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
-                    <Select.Trigger
-                      className={`${baseInputStyles} ${inputBorderStyles} flex items-center justify-between`}
-                    >
-                      <Select.Value placeholder="Selecione o tipo de imóvel" />
-                      <Select.Icon>
-                        <ChevronDownIcon className="h-4 w-4" />
-                      </Select.Icon>
-                    </Select.Trigger>
-                    <Select.Portal>
-                      <Select.Content className="bg-law-black border border-law-blue-dark rounded-md shadow-lg z-50">
-                        <Select.ScrollUpButton className="flex items-center justify-center h-6 text-law-gold">
-                          <ChevronUpIcon className="h-4 w-4" />
-                        </Select.ScrollUpButton>
-                        <Select.Viewport className="p-1">
-                          <Select.Item
-                            value="apartamento"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>Apartamento</Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                          <Select.Item
-                            value="casa"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>Casa</Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                          <Select.Item
-                            value="comercial"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>Comercial</Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                          <Select.Item
-                            value="terreno"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>Terreno</Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                        </Select.Viewport>
-                        <Select.ScrollDownButton className="flex items-center justify-center h-6 text-law-gold">
-                          <ChevronDownIcon className="h-4 w-4" />
-                        </Select.ScrollDownButton>
-                      </Select.Content>
-                    </Select.Portal>
-                  </Select.Root>
-                )}
-              />
-              {errors.tipoImovel && (
-                <Form.Message className="text-red-400 text-sm flex items-center gap-1">
-                  <CircleAlert className="h-4 w-4" />
-                  {errors.tipoImovel.message}
-                </Form.Message>
-              )}
-            </Form.Field>
-
-            {/* Principal Necessidade - Radio Buttons */}
-            <Form.Field name="descricaoProblema" className="space-y-1.5">
-              <Form.Label className="text-sm font-medium text-law-white">
-                Qual é sua principal necessidade?
-              </Form.Label>
-              <Controller
-                name="descricaoProblema"
-                control={control}
-                rules={{ required: "Selecione sua principal necessidade" }}
-                render={({ field }) => (
-                  <RadioGroup.Root
-                    className="space-y-3"
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
-                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
-                      <RadioGroup.Item
-                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="administracao-completa"
-                        id="administracao-completa"
-                      >
-                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
-                      </RadioGroup.Item>
-                      <label
-                        className="text-sm text-law-white cursor-pointer flex-1"
-                        htmlFor="administracao-completa"
-                      >
-                        Administração completa do imóvel
-                      </label>
-                    </div>
-
-                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
-                      <RadioGroup.Item
-                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="inquilino-inadimplente"
-                        id="inquilino-inadimplente"
-                      >
-                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
-                      </RadioGroup.Item>
-                      <label
-                        className="text-sm text-law-white cursor-pointer flex-1"
-                        htmlFor="inquilino-inadimplente"
-                      >
-                        Inquilino inadimplente
-                      </label>
-                    </div>
-
-                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
-                      <RadioGroup.Item
-                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="contrato-locacao"
-                        id="contrato-locacao"
-                      >
-                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
-                      </RadioGroup.Item>
-                      <label
-                        className="text-sm text-law-white cursor-pointer flex-1"
-                        htmlFor="contrato-locacao"
-                      >
-                        Elaboração de contrato de locação
-                      </label>
-                    </div>
-
-                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
-                      <RadioGroup.Item
-                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="despejo"
-                        id="despejo"
-                      >
-                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
-                      </RadioGroup.Item>
-                      <label
-                        className="text-sm text-law-white cursor-pointer flex-1"
-                        htmlFor="despejo"
-                      >
-                        Ação de despejo
-                      </label>
-                    </div>
-
-                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
-                      <RadioGroup.Item
-                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="questoes-condominiais"
-                        id="questoes-condominiais"
-                      >
-                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
-                      </RadioGroup.Item>
-                      <label
-                        className="text-sm text-law-white cursor-pointer flex-1"
-                        htmlFor="questoes-condominiais"
-                      >
-                        Questões condominiais
-                      </label>
-                    </div>
-
-                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
-                      <RadioGroup.Item
-                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="cobranca-alugueis"
-                        id="cobranca-alugueis"
-                      >
-                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
-                      </RadioGroup.Item>
-                      <label
-                        className="text-sm text-law-white cursor-pointer flex-1"
-                        htmlFor="cobranca-alugueis"
-                      >
-                        Cobrança de aluguéis em atraso
-                      </label>
-                    </div>
-
-                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
-                      <RadioGroup.Item
-                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="consultoria-preventiva"
-                        id="consultoria-preventiva"
-                      >
-                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
-                      </RadioGroup.Item>
-                      <label
-                        className="text-sm text-law-white cursor-pointer flex-1"
-                        htmlFor="consultoria-preventiva"
-                      >
-                        Consultoria jurídica preventiva
-                      </label>
-                    </div>
-
-                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
-                      <RadioGroup.Item
-                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="outros"
-                        id="outros"
-                      >
-                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
-                      </RadioGroup.Item>
-                      <label
-                        className="text-sm text-law-white cursor-pointer flex-1"
-                        htmlFor="outros"
-                      >
-                        Outros
-                      </label>
-                    </div>
-                  </RadioGroup.Root>
-                )}
-              />
-              {errors.descricaoProblema && (
-                <Form.Message className="text-red-400 text-sm flex items-center gap-1">
-                  <CircleAlert className="h-4 w-4" />
-                  {errors.descricaoProblema.message}
-                </Form.Message>
-              )}
-            </Form.Field>
-
-            {/* Horário Preferido */}
-            <Form.Field name="horarioPreferido" className="space-y-1.5">
-              <Form.Label className="text-sm font-medium text-law-white">
-                Horário e Dia Preferido para Contato
-              </Form.Label>
-              <Controller
-                name="horarioPreferido"
-                control={control}
-                rules={{ required: "Selecione um horário preferido" }}
-                render={({ field }) => (
-                  <Select.Root
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
-                    <Select.Trigger
-                      className={`${baseInputStyles} ${inputBorderStyles} flex items-center justify-between`}
-                    >
-                      <Select.Value placeholder="Selecione o melhor horário e dia para contato" />
-                      <Select.Icon>
-                        <ChevronDownIcon className="h-4 w-4" />
-                      </Select.Icon>
-                    </Select.Trigger>
-                    <Select.Portal>
-                      <Select.Content className="bg-law-black border border-law-blue-dark rounded-md shadow-lg z-50">
-                        <Select.ScrollUpButton className="flex items-center justify-center h-6 text-law-gold">
-                          <ChevronUpIcon className="h-4 w-4" />
-                        </Select.ScrollUpButton>
-                        <Select.Viewport className="p-1">
-                          <Select.Item
-                            value="manha-semana"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>
-                              Manhã (9h-12h) - Dias úteis
-                            </Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                          <Select.Item
-                            value="tarde-semana"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>
-                              Tarde (14h-17h) - Dias úteis
-                            </Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                          <Select.Item
-                            value="noite-semana"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>
-                              Noite (18h-20h) - Dias úteis
-                            </Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                          <Select.Item
-                            value="sabado-manha"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>
-                              Sábado pela manhã (9h-12h)
-                            </Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                          <Select.Item
-                            value="qualquer-horario"
-                            className="relative flex items-center px-3 py-2 text-law-white hover:bg-law-gold/10 rounded cursor-pointer"
-                          >
-                            <Select.ItemText>
-                              Qualquer horário comercial
-                            </Select.ItemText>
-                            <Select.ItemIndicator className="absolute left-0 w-6 flex items-center justify-center">
-                              <CheckIcon className="h-4 w-4" />
-                            </Select.ItemIndicator>
-                          </Select.Item>
-                        </Select.Viewport>
-                        <Select.ScrollDownButton className="flex items-center justify-center h-6 text-law-gold">
-                          <ChevronDownIcon className="h-4 w-4" />
-                        </Select.ScrollDownButton>
-                      </Select.Content>
-                    </Select.Portal>
-                  </Select.Root>
-                )}
-              />
-              {errors.horarioPreferido && (
-                <Form.Message className="text-red-400 text-sm flex items-center gap-1">
-                  <CircleAlert className="h-4 w-4" />
-                  {errors.horarioPreferido.message}
-                </Form.Message>
-              )}
-            </Form.Field>
-
-            {/* Error Message */}
-            {submissionError && (
-              <div className="bg-red-500/10 border border-red-500/20 rounded-md p-3">
-                <p className="text-red-400 text-sm flex items-center gap-2">
-                  <CircleAlert className="h-4 w-4" />
-                  {submissionError}
+            <div className="bg-law-black-lighter/90 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-law-blue-dark/30">
+              <div className="text-center mb-8">
+                <h2 className="text-2xl font-bold text-law-gold mb-3">
+                  Consultoria Gratuita com Advogados Especialistas em Direito
+                  Imobiliário
+                </h2>
+                <p className="text-law-white-light/90 text-base">
+                  Atendimento 100% online e personalizado para sua situação.
                 </p>
               </div>
-            )}
 
-            {/* Submit Button */}
-            <Form.Submit asChild>
-              <button
-                type="submit"
-                disabled={isSubmitting || !isDirty}
-                className="w-full bg-gradient-to-r from-law-gold to-law-gold-light text-law-black font-bold py-4 px-6 rounded-md hover:from-law-gold-light hover:to-law-gold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              <Form.Root
+                ref={formRef}
+                onSubmit={handleSubmit(onFormSubmit)}
+                className="space-y-6"
               >
-                {isSubmitting
-                  ? "Enviando..."
-                  : "Solicitar Contato dos Advogados"}
-              </button>
-            </Form.Submit>
-          </Form.Root>
+                {/* Nome */}
+                <Form.Field name="nome" className="space-y-2">
+                  <div className="relative">
+                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-law-gold/10 rounded-md flex items-center justify-center">
+                      <User className="h-4 w-4 text-law-gold" />
+                    </div>
+                    <Controller
+                      name="nome"
+                      control={control}
+                      rules={{ required: "Nome é obrigatório" }}
+                      render={({ field }) => (
+                        <input
+                          {...field}
+                          type="text"
+                          placeholder="Seu nome completo"
+                          className={`${baseInputStyles} ${inputBorderStyles} ${inputWithIconPadding}`}
+                        />
+                      )}
+                    />
+                  </div>
+                  {errors.nome && (
+                    <Form.Message className="text-red-400 text-sm flex items-center gap-1">
+                      <CircleAlert className="h-4 w-4" />
+                      {errors.nome.message}
+                    </Form.Message>
+                  )}
+                </Form.Field>
 
-          {/* Steps Section - Moved after form */}
+                {/* Email */}
+                <Form.Field name="email" className="space-y-2">
+                  <div className="relative">
+                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-law-gold/10 rounded-md flex items-center justify-center">
+                      <Mail className="h-4 w-4 text-law-gold" />
+                    </div>
+                    <Controller
+                      name="email"
+                      control={control}
+                      rules={{
+                        required: "Email é obrigatório",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Email inválido",
+                        },
+                      }}
+                      render={({ field }) => (
+                        <input
+                          {...field}
+                          type="email"
+                          placeholder="seu@email.com"
+                          className={`${baseInputStyles} ${inputBorderStyles} ${inputWithIconPadding}`}
+                        />
+                      )}
+                    />
+                  </div>
+                  {errors.email && (
+                    <Form.Message className="text-red-400 text-sm flex items-center gap-1">
+                      <CircleAlert className="h-4 w-4" />
+                      {errors.email.message}
+                    </Form.Message>
+                  )}
+                </Form.Field>
+
+                {/* WhatsApp */}
+                <Form.Field name="telefone" className="space-y-2">
+                  <div className="relative">
+                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-law-gold/10 rounded-md flex items-center justify-center">
+                      <Phone className="h-4 w-4 text-law-gold" />
+                    </div>
+                    <Controller
+                      name="telefone"
+                      control={control}
+                      rules={{ required: "WhatsApp é obrigatório" }}
+                      render={({ field }) => (
+                        <MyMaskedInput
+                          {...field}
+                          mask="(99) 99999-9999"
+                          placeholder="(11) 99999-9999"
+                          className={`${baseInputStyles} ${inputBorderStyles} ${inputWithIconPadding}`}
+                        />
+                      )}
+                    />
+                  </div>
+                  {errors.telefone && (
+                    <Form.Message className="text-red-400 text-sm flex items-center gap-1">
+                      <CircleAlert className="h-4 w-4" />
+                      {errors.telefone.message}
+                    </Form.Message>
+                  )}
+                </Form.Field>
+
+                {/* Error Message */}
+                {submissionError && (
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-md p-3">
+                    <p className="text-red-400 text-sm flex items-center gap-2">
+                      <CircleAlert className="h-4 w-4" />
+                      {submissionError}
+                    </p>
+                  </div>
+                )}
+
+                {/* Submit Button */}
+                <Form.Submit asChild>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !isDirty}
+                    className="w-full bg-gradient-to-r from-law-gold to-law-gold-light text-law-black font-bold py-4 px-6 rounded-lg hover:from-yellow-400 hover:to-yellow-300 hover:bg-yellow-400 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-2xl hover:shadow-law-gold/30 transform hover:-translate-y-1 hover:scale-[1.02] text-lg active:scale-[0.98]"
+                  >
+                    {isSubmitting
+                      ? "Enviando..."
+                      : "Quero resolver isso com ajuda jurídica"}
+                  </button>
+                </Form.Submit>
+
+                {/* Frase de confiança */}
+                <div className="text-center mt-3">
+                  <p className="text-xs text-law-white-light/70 flex items-center justify-center gap-1">
+                    🔒 Seus dados estão protegidos. Atendimento sigiloso
+                    conforme o Código de Ética da OAB.
+                  </p>
+                </div>
+              </Form.Root>
+            </div>
+          </div>
+
+          {/* Trust Elements */}
           <div
-            className="my-10 sm:my-12"
+            className="max-w-3xl mx-auto mb-16"
             data-aos="fade-up"
-            data-aos-delay="100"
+            data-aos-delay="400"
           >
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-law-white mb-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+              <div className="flex flex-col items-center p-6 bg-law-black-lighter/50 rounded-xl border border-law-blue-dark/20 hover:border-law-gold/30 transition-all duration-300 hover:bg-law-black-lighter/70">
+                <Award className="h-12 w-12 text-law-gold mb-4" />
+                <h3 className="font-bold text-law-white text-lg mb-2">
+                  +12 Anos
+                </h3>
+                <p className="text-law-white-light text-sm">
+                  de experiência em Direito Imobiliário
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center p-6 bg-law-black-lighter/50 rounded-xl border border-law-blue-dark/20 hover:border-law-gold/30 transition-all duration-300 hover:bg-law-black-lighter/70">
+                <Shield className="h-12 w-12 text-law-gold mb-4" />
+                <h3 className="font-bold text-law-white text-lg mb-2">OAB</h3>
+                <p className="text-law-white-light text-sm">
+                  Atendimento feito por advogados registrados na OAB
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center p-6 bg-gradient-to-br from-law-black-lighter/70 to-law-black-lighter/50 rounded-xl border border-law-gold/20 shadow-lg hover:shadow-law-gold/10 transition-all duration-300 hover:border-law-gold/40">
+                <Users className="h-12 w-12 text-law-gold mb-4" />
+                <h3 className="font-bold text-law-gold text-xl mb-2">+200</h3>
+                <p className="text-law-white text-sm font-medium">
+                  imóveis administrados com sucesso
+                </p>
+                <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-law-gold/30 to-transparent mt-3"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* How It Works Section */}
+          <div
+            className="max-w-4xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-law-white mb-4">
                 Como Funciona Nosso Atendimento
               </h2>
-              <p className="text-law-white-light/90">
+              <p className="text-law-white-light text-lg">
                 Processo simples e direto para cuidar do seu imóvel
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div
-                className="flex flex-col items-center p-4"
+                className="text-center"
                 data-aos="fade-up"
-                data-aos-delay="200"
+                data-aos-delay="700"
               >
-                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
-                  <FileText className="h-8 w-8 text-law-gold" />
+                <div className="bg-law-gold/10 p-6 rounded-full mb-6 border border-law-gold/20 w-24 h-24 flex items-center justify-center mx-auto">
+                  <MessageCircle className="h-12 w-12 text-law-gold" />
                 </div>
-                <h3 className="font-bold text-lg text-law-white">
+                <h3 className="font-bold text-xl text-law-white mb-3">
                   1. Contato Direto
                 </h3>
-                <p className="text-sm text-law-white-light/80 mt-1">
-                  Entramos em contato por telefone no horário de sua preferência
-                  para uma conversa inicial sobre sua situação imobiliária.
+                <p className="text-law-white-light">
+                  Entramos em contato via WhatsApp para entender sua situação.
                 </p>
               </div>
+
               <div
-                className="flex flex-col items-center p-4"
+                className="text-center"
                 data-aos="fade-up"
-                data-aos-delay="300"
+                data-aos-delay="800"
               >
-                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
-                  <SearchCheck className="h-8 w-8 text-law-gold" />
+                <div className="bg-law-gold/10 p-6 rounded-full mb-6 border border-law-gold/20 w-24 h-24 flex items-center justify-center mx-auto">
+                  <SearchCheck className="h-12 w-12 text-law-gold" />
                 </div>
-                <h3 className="font-bold text-lg text-law-white">
+                <h3 className="font-bold text-xl text-law-white mb-3">
                   2. Análise Gratuita
                 </h3>
-                <p className="text-sm text-law-white-light/80 mt-1">
-                  Durante o contato, avaliamos sua situação e identificamos as
-                  melhores estratégias de gestão e proteção jurídica.
+                <p className="text-law-white-light">
+                  Avaliamos sua situação e identificamos as melhores soluções.
                 </p>
               </div>
+
               <div
-                className="flex flex-col items-center p-4"
+                className="text-center"
                 data-aos="fade-up"
-                data-aos-delay="400"
+                data-aos-delay="900"
               >
-                <div className="bg-law-gold/10 p-4 rounded-full mb-4 border border-law-gold/20">
-                  <Building2 className="h-8 w-8 text-law-gold" />
+                <div className="bg-law-gold/10 p-6 rounded-full mb-6 border border-law-gold/20 w-24 h-24 flex items-center justify-center mx-auto">
+                  <Building2 className="h-12 w-12 text-law-gold" />
                 </div>
-                <h3 className="font-bold text-lg text-law-white">
+                <h3 className="font-bold text-xl text-law-white mb-3">
                   3. Solução Personalizada
                 </h3>
-                <p className="text-sm text-law-white-light/80 mt-1">
-                  Oferecemos gestão completa, assessoria jurídica preventiva e
-                  representação conforme suas necessidades específicas.
+                <p className="text-law-white-light">
+                  Implementamos a gestão completa com segurança jurídica.
                 </p>
               </div>
             </div>

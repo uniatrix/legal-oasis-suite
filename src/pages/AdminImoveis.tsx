@@ -196,25 +196,14 @@ const AdminImoveis: React.FC = () => {
         (submission) =>
           submission.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
           submission.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          submission.telefone.includes(searchTerm) ||
-          submission.descricao_problema
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
+          submission.telefone.includes(searchTerm)
       );
       setFilteredSubmissions(filtered);
     }
   }, [searchTerm, submissions]);
 
   const exportToCSV = () => {
-    const headers = [
-      "Data/Hora",
-      "Nome",
-      "Email",
-      "Telefone",
-      "Tipo de Imóvel",
-      "Horário Preferido",
-      "Principal Necessidade",
-    ];
+    const headers = ["Data/Hora", "Nome", "Email", "WhatsApp"];
 
     const csvContent = [
       headers.join(","),
@@ -228,9 +217,6 @@ const AdminImoveis: React.FC = () => {
           `"${submission.nome}"`,
           `"${submission.email}"`,
           `"${submission.telefone}"`,
-          `"${submission.tipo_imovel}"`,
-          `"${submission.horario_preferido}"`,
-          `"${getNecessidadeText(submission.descricao_problema)}"`,
         ].join(",")
       ),
     ].join("\n");
@@ -247,52 +233,6 @@ const AdminImoveis: React.FC = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  const getNecessidadeText = (necessidade: string) => {
-    switch (necessidade) {
-      case "administracao-completa":
-        return "Administração completa do imóvel";
-      case "inquilino-inadimplente":
-        return "Inquilino inadimplente";
-      case "contrato-locacao":
-        return "Elaboração de contrato de locação";
-      case "despejo":
-        return "Ação de despejo";
-      case "questoes-condominiais":
-        return "Questões condominiais";
-      case "cobranca-alugueis":
-        return "Cobrança de aluguéis em atraso";
-      case "consultoria-preventiva":
-        return "Consultoria jurídica preventiva";
-      case "outros":
-        return "Outros";
-      default:
-        return necessidade;
-    }
-  };
-
-  const getNecessidadeColor = (necessidade: string) => {
-    switch (necessidade) {
-      case "administracao-completa":
-        return "bg-blue-500/10 text-blue-400 border-blue-500/20";
-      case "inquilino-inadimplente":
-        return "bg-red-500/10 text-red-400 border-red-500/20";
-      case "despejo":
-        return "bg-red-600/10 text-red-500 border-red-600/20";
-      case "contrato-locacao":
-        return "bg-green-500/10 text-green-400 border-green-500/20";
-      case "questoes-condominiais":
-        return "bg-purple-500/10 text-purple-400 border-purple-500/20";
-      case "cobranca-alugueis":
-        return "bg-orange-500/10 text-orange-400 border-orange-500/20";
-      case "consultoria-preventiva":
-        return "bg-cyan-500/10 text-cyan-400 border-cyan-500/20";
-      case "outros":
-        return "bg-gray-500/10 text-gray-400 border-gray-500/20";
-      default:
-        return "bg-gray-500/10 text-gray-400 border-gray-500/20";
-    }
   };
 
   const getTipoImovelText = (tipo: string) => {
@@ -335,11 +275,10 @@ const AdminImoveis: React.FC = () => {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-law-gold mb-2">
-              Consultas de Imóveis - Painel Administrativo
+              Análises Gratuitas - Painel Administrativo
             </h1>
             <p className="text-law-white-light">
-              Gerencie e visualize todas as solicitações de consultoria
-              imobiliária
+              Gerencie e visualize todas as solicitações de análise gratuita
             </p>
           </div>
 
@@ -394,7 +333,7 @@ const AdminImoveis: React.FC = () => {
                     {submissions.length}
                   </p>
                   <p className="text-law-white-light text-sm">
-                    Total de Consultas
+                    Total de Análises
                   </p>
                 </div>
               </div>
@@ -448,8 +387,8 @@ const AdminImoveis: React.FC = () => {
                 <FileText className="h-12 w-12 text-law-gold/50 mx-auto mb-4" />
                 <p className="text-law-white-light text-lg">
                   {searchTerm
-                    ? "Nenhuma consulta encontrada com os critérios de busca."
-                    : "Nenhuma consulta encontrada."}
+                    ? "Nenhuma análise encontrada com os critérios de busca."
+                    : "Nenhuma análise encontrada."}
                 </p>
               </div>
             ) : (
@@ -508,49 +447,50 @@ const AdminImoveis: React.FC = () => {
                           <span>{submission.telefone}</span>
                         </div>
 
-                        <div className="flex items-center gap-2 text-law-white-light">
-                          <Building2 className="h-4 w-4 text-law-gold/70" />
-                          <span>
-                            {getTipoImovelText(submission.tipo_imovel)}
-                          </span>
-                        </div>
+                        {submission.tipo_imovel &&
+                          submission.tipo_imovel !== "Não especificado" && (
+                            <div className="flex items-center gap-2 text-law-white-light">
+                              <Building2 className="h-4 w-4 text-law-gold/70" />
+                              <span>
+                                {getTipoImovelText(submission.tipo_imovel)}
+                              </span>
+                            </div>
+                          )}
 
-                        <div className="flex items-center gap-2 text-law-white-light">
-                          <Clock className="h-4 w-4 text-law-gold/70" />
-                          <span>
-                            Contato preferido: {submission.horario_preferido}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-law-white-light">
-                          Necessidade:
-                        </span>
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-medium border ${getNecessidadeColor(
-                            submission.descricao_problema
-                          )}`}
-                        >
-                          {getNecessidadeText(submission.descricao_problema)}
-                        </span>
+                        {submission.horario_preferido &&
+                          submission.horario_preferido !==
+                            "Qualquer horário comercial" && (
+                            <div className="flex items-center gap-2 text-law-white-light">
+                              <Clock className="h-4 w-4 text-law-gold/70" />
+                              <span>
+                                Contato preferido:{" "}
+                                {submission.horario_preferido}
+                              </span>
+                            </div>
+                          )}
                       </div>
                     </div>
 
-                    {/* Right Column */}
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-sm font-medium text-law-gold mb-2 flex items-center gap-2">
-                          <FileText className="h-4 w-4" />
-                          Principal Necessidade
-                        </h4>
-                        <div className="bg-law-black/50 p-4 rounded-md border border-law-blue-dark/20">
-                          <p className="text-law-white-light text-sm leading-relaxed">
-                            {getNecessidadeText(submission.descricao_problema)}
-                          </p>
+                    {/* Right Column - Only show if there's additional info */}
+                    {submission.descricao_problema &&
+                      submission.descricao_problema !==
+                        "Solicitação de análise gratuita" &&
+                      submission.descricao_problema !==
+                        "Solicitação de análise gratuita - formulário simplificado" && (
+                        <div className="space-y-4">
+                          <div>
+                            <h4 className="text-sm font-medium text-law-gold mb-2 flex items-center gap-2">
+                              <FileText className="h-4 w-4" />
+                              Observações
+                            </h4>
+                            <div className="bg-law-black/50 p-4 rounded-md border border-law-blue-dark/20">
+                              <p className="text-law-white-light text-sm leading-relaxed">
+                                {submission.descricao_problema}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
+                      )}
                   </div>
                 </div>
               ))

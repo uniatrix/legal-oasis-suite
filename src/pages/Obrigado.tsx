@@ -73,12 +73,12 @@ const Obrigado: React.FC = () => {
               />
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-law-gold">
-              Solicitação Recebida!
+              Análise Gratuita Solicitada!
             </h1>
             <p className="text-lg sm:text-xl text-law-white-light max-w-xl mx-auto mt-2">
               {name && `Olá, ${name.split(" ")[0]}! `}
-              Recebemos sua solicitação e entraremos em contato por telefone no
-              horário de sua preferência.
+              Recebemos sua solicitação de análise gratuita. Nossos advogados
+              especialistas entrarão em contato via WhatsApp em breve.
             </p>
           </div>
 
@@ -91,13 +91,13 @@ const Obrigado: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 text-lg mb-6">
               <Calendar className="text-law-gold flex-shrink-0" size={32} />
               <span className="leading-relaxed">
-                Nossos advogados entrarão em contato por{" "}
+                Nossos advogados especialistas entrarão em contato via{" "}
                 <strong className="text-law-gold font-semibold">
-                  telefone
+                  WhatsApp
                 </strong>{" "}
-                no horário de sua preferência para uma{" "}
+                em até 2 horas úteis para sua{" "}
                 <strong className="text-law-gold font-semibold">
-                  conversa inicial gratuita
+                  análise gratuita personalizada
                 </strong>
                 .
               </span>
@@ -115,15 +115,13 @@ const Obrigado: React.FC = () => {
                 </h3>
                 <ul className="space-y-1.5 text-law-white-light/90 text-sm sm:text-base list-disc list-inside pl-1">
                   <li>
-                    Mantenha seu telefone disponível no horário informado.
+                    Mantenha seu WhatsApp disponível para receber nossa
+                    mensagem.
                   </li>
-                  <li>
-                    Tenha em mãos os documentos relevantes para sua situação
-                    imobiliária.
-                  </li>
-                  <li>A conversa inicial é gratuita e sem compromisso.</li>
+                  <li>Tenha em mãos informações básicas sobre seu imóvel.</li>
+                  <li>A análise é 100% gratuita e sem compromisso.</li>
                   <li className="font-semibold">
-                    Caso não possa atender, responderemos assim que possível.
+                    Atendimento em horário comercial (9h às 18h).
                   </li>
                 </ul>
               </div>
@@ -152,8 +150,8 @@ const Obrigado: React.FC = () => {
                   htmlFor="confirm-attendance"
                   className="text-base sm:text-lg text-law-white-light cursor-pointer leading-tight"
                 >
-                  Confirmo que li as informações e aguardo o contato por
-                  telefone.
+                  Confirmo que li as informações e aguardo o contato via
+                  WhatsApp para minha análise gratuita.
                 </label>
               </div>
 
@@ -174,7 +172,7 @@ const Obrigado: React.FC = () => {
               >
                 <span className="flex items-center gap-2">
                   <CheckIcon size={22} />
-                  Solicitação Confirmada!
+                  Análise Gratuita Confirmada!
                 </span>
               </button>
             </div>
