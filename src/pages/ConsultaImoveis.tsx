@@ -475,13 +475,12 @@ const ConsultaImoveis: React.FC = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col items-center p-6 bg-gradient-to-br from-law-black-lighter/70 to-law-black-lighter/50 rounded-xl border border-law-gold/20 shadow-lg hover:shadow-law-gold/10 transition-all duration-300 hover:border-law-gold/40">
+              <div className="flex flex-col items-center p-6 bg-law-black-lighter/50 rounded-xl border border-law-blue-dark/20 hover:border-law-gold/30 transition-all duration-300 hover:bg-law-black-lighter/70">
                 <Users className="h-12 w-12 text-law-gold mb-4" />
-                <h3 className="font-bold text-law-gold text-xl mb-2">+200</h3>
-                <p className="text-law-white text-sm font-medium">
+                <h3 className="font-bold text-law-white text-lg mb-2">+200</h3>
+                <p className="text-law-white-light text-sm">
                   imóveis administrados com sucesso
                 </p>
-                <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-law-gold/30 to-transparent mt-3"></div>
               </div>
             </div>
           </div>
