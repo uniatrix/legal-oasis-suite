@@ -13,7 +13,6 @@ export interface ConsultaImoveisSubmission {
   email: string
   telefone: string
   tipo_imovel: string
-  situacao_imovel: string
   horario_preferido: string
   descricao_problema: string
   arquivado?: boolean

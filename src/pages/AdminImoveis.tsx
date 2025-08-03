@@ -212,9 +212,8 @@ const AdminImoveis: React.FC = () => {
       "Email",
       "Telefone",
       "Tipo de Imóvel",
-      "Situação do Imóvel",
       "Horário Preferido",
-      "Descrição do Problema",
+      "Principal Necessidade",
     ];
 
     const csvContent = [
@@ -230,9 +229,8 @@ const AdminImoveis: React.FC = () => {
           `"${submission.email}"`,
           `"${submission.telefone}"`,
           `"${submission.tipo_imovel}"`,
-          `"${submission.situacao_imovel}"`,
           `"${submission.horario_preferido}"`,
-          `"${submission.descricao_problema.replace(/"/g, '""')}"`,
+          `"${getNecessidadeText(submission.descricao_problema)}"`,
         ].join(",")
       ),
     ].join("\n");
@@ -251,29 +249,49 @@ const AdminImoveis: React.FC = () => {
     document.body.removeChild(link);
   };
 
-  const getStatusColor = (situacao: string) => {
-    switch (situacao) {
-      case "alugado":
-        return "bg-green-500/10 text-green-400 border-green-500/20";
-      case "vazio":
-        return "bg-blue-500/10 text-blue-400 border-blue-500/20";
-      case "problemas":
-        return "bg-red-500/10 text-red-400 border-red-500/20";
+  const getNecessidadeText = (necessidade: string) => {
+    switch (necessidade) {
+      case "administracao-completa":
+        return "Administração completa do imóvel";
+      case "inquilino-inadimplente":
+        return "Inquilino inadimplente";
+      case "contrato-locacao":
+        return "Elaboração de contrato de locação";
+      case "despejo":
+        return "Ação de despejo";
+      case "questoes-condominiais":
+        return "Questões condominiais";
+      case "cobranca-alugueis":
+        return "Cobrança de aluguéis em atraso";
+      case "consultoria-preventiva":
+        return "Consultoria jurídica preventiva";
+      case "outros":
+        return "Outros";
       default:
-        return "bg-gray-500/10 text-gray-400 border-gray-500/20";
+        return necessidade;
     }
   };
 
-  const getSituacaoText = (situacao: string) => {
-    switch (situacao) {
-      case "alugado":
-        return "Já está alugado";
-      case "vazio":
-        return "Está vazio/disponível";
-      case "problemas":
-        return "Tenho problemas com inquilino";
+  const getNecessidadeColor = (necessidade: string) => {
+    switch (necessidade) {
+      case "administracao-completa":
+        return "bg-blue-500/10 text-blue-400 border-blue-500/20";
+      case "inquilino-inadimplente":
+        return "bg-red-500/10 text-red-400 border-red-500/20";
+      case "despejo":
+        return "bg-red-600/10 text-red-500 border-red-600/20";
+      case "contrato-locacao":
+        return "bg-green-500/10 text-green-400 border-green-500/20";
+      case "questoes-condominiais":
+        return "bg-purple-500/10 text-purple-400 border-purple-500/20";
+      case "cobranca-alugueis":
+        return "bg-orange-500/10 text-orange-400 border-orange-500/20";
+      case "consultoria-preventiva":
+        return "bg-cyan-500/10 text-cyan-400 border-cyan-500/20";
+      case "outros":
+        return "bg-gray-500/10 text-gray-400 border-gray-500/20";
       default:
-        return situacao;
+        return "bg-gray-500/10 text-gray-400 border-gray-500/20";
     }
   };
 
@@ -507,14 +525,14 @@ const AdminImoveis: React.FC = () => {
 
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-law-white-light">
-                          Status:
+                          Necessidade:
                         </span>
                         <span
-                          className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(
-                            submission.situacao_imovel
+                          className={`px-3 py-1 rounded-full text-xs font-medium border ${getNecessidadeColor(
+                            submission.descricao_problema
                           )}`}
                         >
-                          {getSituacaoText(submission.situacao_imovel)}
+                          {getNecessidadeText(submission.descricao_problema)}
                         </span>
                       </div>
                     </div>
@@ -524,11 +542,11 @@ const AdminImoveis: React.FC = () => {
                       <div>
                         <h4 className="text-sm font-medium text-law-gold mb-2 flex items-center gap-2">
                           <FileText className="h-4 w-4" />
-                          Descrição do Problema
+                          Principal Necessidade
                         </h4>
                         <div className="bg-law-black/50 p-4 rounded-md border border-law-blue-dark/20">
                           <p className="text-law-white-light text-sm leading-relaxed">
-                            {submission.descricao_problema}
+                            {getNecessidadeText(submission.descricao_problema)}
                           </p>
                         </div>
                       </div>

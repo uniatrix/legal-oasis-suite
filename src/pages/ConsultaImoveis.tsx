@@ -35,7 +35,6 @@ interface IFormInput {
   email: string;
   telefone: string;
   tipoImovel: string;
-  situacaoImovel: string;
   horarioPreferido: string;
   descricaoProblema: string;
 }
@@ -54,7 +53,6 @@ const ConsultaImoveis: React.FC = () => {
       email: "",
       telefone: "",
       tipoImovel: "",
-      situacaoImovel: "",
       horarioPreferido: "",
       descricaoProblema: "",
     },
@@ -81,9 +79,8 @@ const ConsultaImoveis: React.FC = () => {
     if (!currentValues.email) missing.push("Email");
     if (!currentValues.telefone) missing.push("Telefone");
     if (!currentValues.tipoImovel) missing.push("Tipo de Imóvel");
-    if (!currentValues.situacaoImovel) missing.push("Situação do Imóvel");
     if (!currentValues.horarioPreferido) missing.push("Horário Preferido");
-    if (!currentValues.descricaoProblema) missing.push("Descrição do Problema");
+    if (!currentValues.descricaoProblema) missing.push("Principal Necessidade");
     setMissingFields(missing);
   }, [
     getValues,
@@ -91,7 +88,6 @@ const ConsultaImoveis: React.FC = () => {
     watch("email"),
     watch("telefone"),
     watch("tipoImovel"),
-    watch("situacaoImovel"),
     watch("horarioPreferido"),
     watch("descricaoProblema"),
   ]);
@@ -142,7 +138,6 @@ const ConsultaImoveis: React.FC = () => {
           email: formValues.email || null,
           telefone: formValues.telefone || null,
           tipoimovel: formValues.tipoImovel || null,
-          situacaoimovel: formValues.situacaoImovel || null,
           horariopreferido: formValues.horarioPreferido || null,
           descricaoproblema: formValues.descricaoProblema || null,
         };
@@ -240,7 +235,6 @@ const ConsultaImoveis: React.FC = () => {
             email: data.email,
             telefone: data.telefone,
             tipo_imovel: data.tipoImovel,
-            situacao_imovel: data.situacaoImovel,
             horario_preferido: data.horarioPreferido,
             descricao_problema: data.descricaoProblema,
           },
@@ -513,73 +507,155 @@ const ConsultaImoveis: React.FC = () => {
               )}
             </Form.Field>
 
-            {/* Situação do Imóvel */}
-            <Form.Field name="situacaoImovel" className="space-y-1.5">
+            {/* Principal Necessidade - Radio Buttons */}
+            <Form.Field name="descricaoProblema" className="space-y-1.5">
               <Form.Label className="text-sm font-medium text-law-white">
-                Situação do Imóvel
+                Qual é sua principal necessidade?
               </Form.Label>
               <Controller
-                name="situacaoImovel"
+                name="descricaoProblema"
                 control={control}
-                rules={{ required: "Selecione a situação do imóvel" }}
+                rules={{ required: "Selecione sua principal necessidade" }}
                 render={({ field }) => (
                   <RadioGroup.Root
-                    className="space-y-2"
+                    className="space-y-3"
                     onValueChange={field.onChange}
                     value={field.value}
                   >
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
                       <RadioGroup.Item
                         className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="alugado"
-                        id="alugado"
+                        value="administracao-completa"
+                        id="administracao-completa"
                       >
                         <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
                       </RadioGroup.Item>
                       <label
-                        className="text-sm text-law-white cursor-pointer"
-                        htmlFor="alugado"
+                        className="text-sm text-law-white cursor-pointer flex-1"
+                        htmlFor="administracao-completa"
                       >
-                        Já está alugado
+                        Administração completa do imóvel
                       </label>
                     </div>
-                    <div className="flex items-center space-x-2">
+
+                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
                       <RadioGroup.Item
                         className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="vazio"
-                        id="vazio"
+                        value="inquilino-inadimplente"
+                        id="inquilino-inadimplente"
                       >
                         <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
                       </RadioGroup.Item>
                       <label
-                        className="text-sm text-law-white cursor-pointer"
-                        htmlFor="vazio"
+                        className="text-sm text-law-white cursor-pointer flex-1"
+                        htmlFor="inquilino-inadimplente"
                       >
-                        Está vazio/disponível
+                        Inquilino inadimplente
                       </label>
                     </div>
-                    <div className="flex items-center space-x-2">
+
+                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
                       <RadioGroup.Item
                         className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
-                        value="problemas"
-                        id="problemas"
+                        value="contrato-locacao"
+                        id="contrato-locacao"
                       >
                         <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
                       </RadioGroup.Item>
                       <label
-                        className="text-sm text-law-white cursor-pointer"
-                        htmlFor="problemas"
+                        className="text-sm text-law-white cursor-pointer flex-1"
+                        htmlFor="contrato-locacao"
                       >
-                        Tenho problemas com inquilino
+                        Elaboração de contrato de locação
+                      </label>
+                    </div>
+
+                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
+                      <RadioGroup.Item
+                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
+                        value="despejo"
+                        id="despejo"
+                      >
+                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
+                      </RadioGroup.Item>
+                      <label
+                        className="text-sm text-law-white cursor-pointer flex-1"
+                        htmlFor="despejo"
+                      >
+                        Ação de despejo
+                      </label>
+                    </div>
+
+                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
+                      <RadioGroup.Item
+                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
+                        value="questoes-condominiais"
+                        id="questoes-condominiais"
+                      >
+                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
+                      </RadioGroup.Item>
+                      <label
+                        className="text-sm text-law-white cursor-pointer flex-1"
+                        htmlFor="questoes-condominiais"
+                      >
+                        Questões condominiais
+                      </label>
+                    </div>
+
+                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
+                      <RadioGroup.Item
+                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
+                        value="cobranca-alugueis"
+                        id="cobranca-alugueis"
+                      >
+                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
+                      </RadioGroup.Item>
+                      <label
+                        className="text-sm text-law-white cursor-pointer flex-1"
+                        htmlFor="cobranca-alugueis"
+                      >
+                        Cobrança de aluguéis em atraso
+                      </label>
+                    </div>
+
+                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
+                      <RadioGroup.Item
+                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
+                        value="consultoria-preventiva"
+                        id="consultoria-preventiva"
+                      >
+                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
+                      </RadioGroup.Item>
+                      <label
+                        className="text-sm text-law-white cursor-pointer flex-1"
+                        htmlFor="consultoria-preventiva"
+                      >
+                        Consultoria jurídica preventiva
+                      </label>
+                    </div>
+
+                    <div className="flex items-center space-x-3 p-3 rounded-md border border-law-blue-dark/50 hover:border-law-gold/50 hover:bg-law-gold/5 transition-all duration-200">
+                      <RadioGroup.Item
+                        className="w-4 h-4 rounded-full border border-law-gold bg-law-black"
+                        value="outros"
+                        id="outros"
+                      >
+                        <RadioGroup.Indicator className="flex items-center justify-center w-full h-full relative after:content-[''] after:w-2 after:h-2 after:rounded-full after:bg-law-gold" />
+                      </RadioGroup.Item>
+                      <label
+                        className="text-sm text-law-white cursor-pointer flex-1"
+                        htmlFor="outros"
+                      >
+                        Outros
                       </label>
                     </div>
                   </RadioGroup.Root>
                 )}
               />
-              {errors.situacaoImovel && (
+              {errors.descricaoProblema && (
                 <Form.Message className="text-red-400 text-sm flex items-center gap-1">
                   <CircleAlert className="h-4 w-4" />
-                  {errors.situacaoImovel.message}
+                  {errors.descricaoProblema.message}
                 </Form.Message>
               )}
             </Form.Field>
@@ -680,38 +756,6 @@ const ConsultaImoveis: React.FC = () => {
                 <Form.Message className="text-red-400 text-sm flex items-center gap-1">
                   <CircleAlert className="h-4 w-4" />
                   {errors.horarioPreferido.message}
-                </Form.Message>
-              )}
-            </Form.Field>
-
-            {/* Descrição do Problema */}
-            <Form.Field name="descricaoProblema" className="space-y-1.5">
-              <Form.Label className="text-sm font-medium text-law-white">
-                Descreva Brevemente Sua Situação
-              </Form.Label>
-              <Controller
-                name="descricaoProblema"
-                control={control}
-                rules={{
-                  required: "Por favor, descreva sua situação",
-                  maxLength: {
-                    value: 500,
-                    message: "Descrição deve ter no máximo 500 caracteres",
-                  },
-                }}
-                render={({ field }) => (
-                  <textarea
-                    {...field}
-                    placeholder="Ex: Preciso de ajuda com contrato de locação, inquilino inadimplente, questões condominiais, etc."
-                    rows={4}
-                    className={`${baseInputStyles} ${inputBorderStyles} resize-none`}
-                  />
-                )}
-              />
-              {errors.descricaoProblema && (
-                <Form.Message className="text-red-400 text-sm flex items-center gap-1">
-                  <CircleAlert className="h-4 w-4" />
-                  {errors.descricaoProblema.message}
                 </Form.Message>
               )}
             </Form.Field>
