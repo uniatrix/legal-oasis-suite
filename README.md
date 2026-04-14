@@ -1,4 +1,4 @@
-# Legal Oasis Suite
+## 🇧🇷 Legal Oasis Suite
 
 <img src="public/logo.png" alt="Seabra & Moura Santos Advogados" width="200"/>
 
@@ -105,3 +105,35 @@ Para mais informações, entre em contato através de:
 ---
 
 Desenvolvido com ❤️ para Seabra & Moura Santos Advogados
+
+---
+
+## 🇺🇸 Legal Oasis Suite (English)
+
+Professional website for **Seabra & Moura Santos** law firm, specialized in recovery of funds lost to banking scams and PIX fraud (Brazilian instant payment system).
+
+### Features
+- Modern responsive design
+- Informational sections (firm overview, practice areas, lawyer profiles)
+- AOS scroll-triggered animations
+- **AI chatbot** powered by Google Gemini, trained on firm-specific legal info
+- SEO-optimized (meta tags, semantic structure)
+- WhatsApp contact integration at strategic points
+- Interactive FAQ covering PIX fraud scenarios
+
+### Stack
+React 18+ · TypeScript · Vite · Tailwind CSS · Radix UI · React Router · Google Gemini AI · AOS (Animate On Scroll)
+
+### Run locally
+```bash
+git clone https://github.com/uniatrix/legal-oasis-suite.git
+cd legal-oasis-suite
+npm install
+npm run dev
+```
+
+### AI Chatbot
+Includes a virtual assistant powered by Google Gemini that answers questions about PIX scams, firm services, and appointment scheduling. Its knowledge base lives in `public/law-info.md`. See [README-CHATBOT.md](README-CHATBOT.md) for details.
+
+### License
+Proprietary — exclusive use of Seabra & Moura Santos Advogados.
